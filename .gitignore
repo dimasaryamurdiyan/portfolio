@@ -36,6 +36,16 @@ migrate_working_dir/
 # Web related
 /build/web/
 
+# iOS/macOS Config files
+ios/**/*Config*
+macos/**/*Config*
+ios/**/Configs/
+macos/**/Configs/
+
+# iOS/macOS Podfile.lock (for web-only projects)
+ios/Podfile.lock
+macos/Podfile.lock
+
 # Symbolication related
 app.*.symbols
 
