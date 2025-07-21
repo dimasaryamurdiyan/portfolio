@@ -9,15 +9,16 @@ class WhatIDoSection extends StatelessWidget {
     final isLargeScreen = MediaQuery.of(context).size.width > 800;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 24),
+      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 24),
       child: Column(
         children: [
+          SizedBox(height: 120),
           Text(
             "What I do",
             style: TextStyle(
-              fontSize: isLargeScreen ? 36 : 28,
+              fontSize: isLargeScreen ? 24 : 18,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
             textAlign: TextAlign.center,
           ),
@@ -30,7 +31,7 @@ class WhatIDoSection extends StatelessWidget {
               style: TextStyle(
                 fontSize: isLargeScreen ? 18 : 16,
                 height: 1.6,
-                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ),

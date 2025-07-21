@@ -9,10 +9,19 @@ class ProjectCard extends StatelessWidget {
 
   const ProjectCard({super.key, required this.project});
 
+  // Helper to convert hex string to Color
+  Color _hexToColor(String hexCode) {
+    String formattedHex = hexCode.replaceAll("#", "");
+    if (formattedHex.length == 6) {
+      formattedHex = "FF$formattedHex"; // Add full opacity
+    }
+    return Color(int.parse(formattedHex, radix: 16));
+  }
+
   Future<void> _launchUrl(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
-      if (kDebugMode) {
+      if(kDebugMode) {
         print('Could not launch $url');
       }
     }
@@ -20,70 +29,56 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    // Removed isLargeScreen as it's not directly used for card internal layout anymore
+    // and the card itself is responsive via GridView.builder's childAspectRatio
 
     return Card(
-      elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 12.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      clipBehavior: Clip.antiAlias, // Ensures image corners are rounded
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Project Image
-          Image.network(
-            project["image_url"] ?? "https://placehold.co/600x400/CCCCCC/000?text=Project+Image",
-            fit: BoxFit.cover,
-            height: isLargeScreen ? 200 : 150,
-            width: double.infinity,
-            errorBuilder: (context, error, stackTrace) => Container(
-              height: isLargeScreen ? 200 : 150,
-              color: Theme.of(context).colorScheme.surfaceVariant,
-              child: Center(
-                child: Icon(Icons.broken_image, color: Theme.of(context).colorScheme.onSurfaceVariant),
+      elevation: 0, // Set elevation to 0 to match flat design in screenshot
+      margin: const EdgeInsets.symmetric(vertical: 0.0), // No vertical margin on the card itself
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)), // Slightly less rounded than before to match screenshot
+      clipBehavior: Clip.antiAlias,
+      color: _hexToColor(project["card_color"] ?? "#FFFFFF"), // Use dynamic background color
+      child: Padding(
+        padding: const EdgeInsets.all(24.0), // Increased padding
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, // Align content to start
+          children: [
+            Text(
+              project["company"]!, // Using company as project title
+              style: TextStyle(
+                fontSize: 20, // Adjusted font size
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  project["company"]!, // Using company as project title
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
+            const SizedBox(height: 8), // Spacing between title and description
+            Expanded( // Use Expanded to ensure description takes available space
+              child: Text(
+                project["description"] ?? "No description available.",
+                style: TextStyle(
+                  fontSize: 16, // Adjusted font size
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  project["description"] ?? "No description available.",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
-                  ),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: TextButton.icon(
-                    onPressed: () => _launchUrl(PortfolioData.githubUrl), // Link to GitHub or specific project URL
-                    icon: const Icon(Icons.arrow_forward),
-                    label: const Text('View Project'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.primary,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                    ),
-                  ),
-                ),
-              ],
+                // Removed maxLines and overflow as Expanded handles it better
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 16), // Spacing before the button
+            Align(
+              alignment: Alignment.bottomLeft, // Align button to bottom left
+              child: TextButton.icon(
+                onPressed: () => _launchUrl(PortfolioData.githubUrl), // Link to GitHub or specific project URL
+                icon: Icon(Icons.open_in_new, size: 18), // Changed icon to open_in_new
+                label: Text('View Project', style: TextStyle(fontSize: 16)), // Adjusted font size
+                style: TextButton.styleFrom(
+                  foregroundColor: Theme.of(context).colorScheme.onSurface, // Match text color
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  padding: EdgeInsets.zero, // Remove default button padding
+                  alignment: Alignment.centerLeft, // Align text and icon to left within the button area
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

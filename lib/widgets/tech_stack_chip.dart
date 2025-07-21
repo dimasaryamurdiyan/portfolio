@@ -13,7 +13,7 @@ class TechStackChip extends StatelessWidget {
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
         child: Column(
           children: [
             Icon(icon, size: 40, color: Theme.of(context).colorScheme.primary),

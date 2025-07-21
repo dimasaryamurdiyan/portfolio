@@ -16,9 +16,9 @@ class TechIWorkWithSection extends StatelessWidget {
           Text(
             "Tech I Work With",
             style: TextStyle(
-              fontSize: isLargeScreen ? 36 : 28,
+              fontSize: isLargeScreen ? 24 : 18,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
             textAlign: TextAlign.center,
           ),

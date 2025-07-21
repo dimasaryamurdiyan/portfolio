@@ -27,21 +27,22 @@ class HeroSection extends StatelessWidget {
             "Hi, I'm ${PortfolioData.name}",
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontFamily: 'Arial',
               fontSize: isLargeScreen ? 64 : 48,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
-          const SizedBox(height: 16),
           Text(
             PortfolioData.title,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: isLargeScreen ? 28 : 22,
-              color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 700),
             child: Text(
@@ -49,8 +50,9 @@ class HeroSection extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: isLargeScreen ? 18 : 16,
+                fontWeight: FontWeight.w500,
                 height: 1.5,
-                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ),
@@ -67,9 +69,12 @@ class HeroSection extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: isLargeScreen ? 18 : 14),
-                  textStyle: TextStyle(fontSize: isLargeScreen ? 18 : 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: isLargeScreen ? 20 : 12),
+                  textStyle: TextStyle(
+                    fontSize: isLargeScreen ? 14 : 12,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               OutlinedButton.icon(
@@ -77,11 +82,14 @@ class HeroSection extends StatelessWidget {
                 icon: const Icon(Icons.download),
                 label: const Text('Download Resume'),
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Theme.of(context).colorScheme.primary,
-                  side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: isLargeScreen ? 18 : 14),
-                  textStyle: TextStyle(fontSize: isLargeScreen ? 18 : 16),
+                  foregroundColor: Theme.of(context).colorScheme.onSurface,
+                  side: BorderSide(color: Theme.of(context).colorScheme.onSurfaceVariant, width: 1),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: isLargeScreen ? 20 : 12),
+                  textStyle: TextStyle(
+                    fontSize: isLargeScreen ? 14 : 12,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
