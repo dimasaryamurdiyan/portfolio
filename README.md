@@ -7,7 +7,6 @@ A modern, responsive portfolio application built with Flutter showcasing profess
 - **Responsive Design**: Optimized for mobile, tablet, and desktop platforms
 - **Dark/Light Theme**: Toggle between themes with persistent preferences
 - **Interactive UI**: Smooth animations and modern Material Design components
-- **Cross-Platform**: Runs on iOS, Android, Web, Windows, macOS, and Linux
 - **Clean Architecture**: Well-structured codebase with separation of concerns
 - **State Management**: Efficient state management using Riverpod
 
@@ -51,11 +50,18 @@ lib/
 │   └── providers/              # Riverpod providers
 │       └── theme_provider.dart # Theme state management
 └── widgets/
-    ├── certificate_card.dart   # Certificate display component
-    ├── education_card.dart     # Education information component
-    ├── experience_card.dart    # Work experience component
-    ├── section_header.dart     # Section title component
-    └── skill_chip.dart         # Skill tag component
+    ├── certificate_card.dart      # Certificate display component
+    ├── custom_app_bar.dart        # Custom navigation app bar
+    ├── education_card.dart        # Education information component
+    ├── experience_card.dart       # Work experience component
+    ├── hero_section.dart          # Main hero/banner section
+    ├── lets_work_together_section.dart # Contact section component
+    ├── project_card.dart          # Project showcase cards
+    ├── section_header.dart        # Section title component
+    ├── skill_chip.dart            # Skill tag component
+    ├── tech_i_work_with_section.dart # Technology stack section
+    ├── tech_stack_chip.dart       # Technology chip component
+    └── what_i_do_section.dart     # Services/about section
 ```
 
 ## 🎨 Design Features
@@ -100,33 +106,9 @@ lib/
 flutter build web
 ```
 
-**Android**
-```bash
-flutter build apk --release
-# or
-flutter build appbundle --release
-```
-
-**iOS**
-```bash
-flutter build ios --release
-```
-
-**Desktop**
-```bash
-flutter build macos --release  # macOS
-flutter build windows --release  # Windows
-flutter build linux --release    # Linux
-```
-
 ## 📱 Supported Platforms
 
-- ✅ iOS
-- ✅ Android  
 - ✅ Web
-- ✅ Windows
-- ✅ macOS
-- ✅ Linux
 
 ## 🔧 Configuration
 
