@@ -18,7 +18,7 @@ class PortfolioData {
       "title": "TiramAI - From Concept to Creation",
       "description": "Built TiramAI, an AI-driven mobile code generation and self-healing engine. It generates full Flutter apps from user text or voice prompts — and continuously evolves them. Users can report issues or suggest improvements directly from the app. TiramAI analyzes feedback, regenerates affected screens, and automatically updates the apps to Play Store and App Store — accelerating traditional development cycles by 10x. 20+ production-ready apps generated and shipped in beta using this system.",
       "tech": "Flutter, Firebase, OpenAI, AI/ML",
-      "featured": true,
+      "featured": "true",
       "url": "https://play.google.com/store/apps/developer?id=TiramAI",
       "status": "View Beta Apps on Play Store"
     },
@@ -26,35 +26,35 @@ class PortfolioData {
       "title": "CareAlert – Wellness Monitoring App",
       "description": "Migrated the CareAlert mobile app to Flutter, improving scalability, stability, and maintenance efficiency.",
       "tech": "Flutter, Mobile Development",
-      "featured": false,
+      "featured": "false",
       "status": "View Project"
     },
     {
       "title": "Product Engineering Bridge",
       "description": "Built an MVP tool for better PM-engineering collaboration. Breaks down product ideas into features, clarifications, and tech stack.",
       "tech": "Product Management, Engineering",
-      "featured": false,
+      "featured": "false",
       "status": "View Project"
     },
     {
       "title": "Stock Buddy - Indian Stock Advisor",
       "description": "Developed a conversational AI for Indian stock investors to check stock valuation metrics and offer beginner-friendly advice.",
       "tech": "AI, Finance, Flutter",
-      "featured": false,
+      "featured": "false",
       "status": "View Project"
     },
     {
       "title": "The Eternal Journey - AI Comic",
       "description": "Created an AI-generated mythological comic series, blending storytelling and visual design through Generative AI models.",
       "tech": "AI, Creative Technology",
-      "featured": false,
+      "featured": "false",
       "status": "View Project"
     },
     {
       "title": "IoT Smart Air Purifier App",
       "description": "Built a Bluetooth-enabled Flutter app to control smart air purifiers, improving product usability and control experience.",
       "tech": "IoT, Flutter, Bluetooth",
-      "featured": false,
+      "featured": "false",
       "status": "Coming Soon"
     },
   ];
