@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  url_launcher: ^6.1.10 
   flutter_riverpod: ^2.4.9
   shared_preferences: ^2.2.2 
 
