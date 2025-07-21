@@ -107,7 +107,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
         ),
         actions: [
           PopupMenuButton<String>(
-            icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.onBackground),
+            icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.onSurface),
             onSelected: (String value) {
               if (value == 'about') onAboutPressed();
               if (value == 'projects') onProjectsPressed();
@@ -171,10 +171,10 @@ class _AppBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: onPressed,
-      icon: Icon(icon, color: Theme.of(context).colorScheme.onBackground),
+      icon: Icon(icon, color: Theme.of(context).colorScheme.onSurface),
       label: Text(
         text,
-        style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+        style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
       ),
       style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

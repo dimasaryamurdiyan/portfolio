@@ -23,9 +23,8 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.blue,
         fontFamily: 'Inter',
-        scaffoldBackgroundColor: Colors.grey[50], // Lighter background
+        scaffoldBackgroundColor: Colors.white, // Lighter background
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.grey[50], // Match scaffold background
           foregroundColor: Colors.black87,
@@ -53,28 +52,19 @@ class MyApp extends ConsumerWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
         ),
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF0065F8),
           brightness: Brightness.light,
         ).copyWith(
-          secondary: Colors.lightBlueAccent,
-          background: Colors.grey[50],
-          onBackground: Colors.black87,
+          primary: const Color(0xFF0065F8),
           surface: Colors.white,
           onSurface: Colors.black87,
           onSurfaceVariant: Colors.grey[700],
-          primaryContainer: Colors.blue.shade100,
-          onPrimaryContainer: Colors.blue.shade900,
-          secondaryContainer: Colors.lightBlueAccent.shade100,
-          onSecondaryContainer: Colors.lightBlueAccent.shade700,
-          tertiaryContainer: Colors.green.shade100,
-          onTertiaryContainer: Colors.green.shade900,
-          surfaceVariant: Colors.grey[200], // For placeholder image background
+          surfaceContainerHighest: Colors.grey[200], // For placeholder image background
         ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
         fontFamily: 'Inter',
         scaffoldBackgroundColor: Colors.grey[900], // Darker background
         appBarTheme: AppBarTheme(
@@ -104,20 +94,14 @@ class MyApp extends ConsumerWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
         ),
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF0065F8),
           brightness: Brightness.dark,
         ).copyWith(
-          secondary: Colors.cyan,
+          primary: const Color(0xFF0065F8),
           surface: Colors.blueGrey[800],
           onSurface: Colors.white70,
           onSurfaceVariant: Colors.grey[400],
-          primaryContainer: Colors.blue.shade900,
-          onPrimaryContainer: Colors.blue.shade100,
-          secondaryContainer: Colors.cyan.shade900,
-          onSecondaryContainer: Colors.cyan.shade100,
-          tertiaryContainer: Colors.green.shade900,
-          onTertiaryContainer: Colors.green.shade100,
           surfaceContainerHighest: Colors.blueGrey[700], // For placeholder image background
         ),
       ),
