@@ -47,6 +47,7 @@ class _HomePageState extends ConsumerState<HomePage> { // Access ref directly he
   @override
   Widget build(BuildContext context) {
     final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final currentTheme = ref.watch(themeModeProvider); // Watch the current theme
 
     return Scaffold(
       appBar: AppBar(
@@ -56,12 +57,12 @@ class _HomePageState extends ConsumerState<HomePage> { // Access ref directly he
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.light_mode),
+            icon: Icon(_getThemeIcon(currentTheme)),
             onPressed: () {
               // Toggle theme using the ThemeModeNotifier
               ref.read(themeModeProvider.notifier).toggleTheme();
             },
-            tooltip: 'Toggle Theme',
+            tooltip: _getThemeTooltip(currentTheme),
           ),
           if (isLargeScreen) ...[
             TextButton(
@@ -325,5 +326,27 @@ class _HomePageState extends ConsumerState<HomePage> { // Access ref directly he
         ),
       ),
     );
+  }
+
+  IconData _getThemeIcon(ThemeMode themeMode) {
+    switch (themeMode) {
+      case ThemeMode.light:
+        return Icons.light_mode;
+      case ThemeMode.dark:
+        return Icons.dark_mode;
+      case ThemeMode.system:
+        return Icons.brightness_auto;
+    }
+  }
+
+  String _getThemeTooltip(ThemeMode themeMode) {
+    switch (themeMode) {
+      case ThemeMode.light:
+        return 'Switch to Dark Mode';
+      case ThemeMode.dark:
+        return 'Switch to System Mode';
+      case ThemeMode.system:
+        return 'Switch to Light Mode';
+    }
   }
 }

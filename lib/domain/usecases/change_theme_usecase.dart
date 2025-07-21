@@ -11,7 +11,21 @@ class ChangeThemeUseCase {
   }
 
   Future<void> toggleTheme(ThemeMode currentTheme) async {
-    final newTheme = currentTheme == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    ThemeMode newTheme;
+    
+    // Cycle through: light -> dark -> system -> light
+    switch (currentTheme) {
+      case ThemeMode.light:
+        newTheme = ThemeMode.dark;
+        break;
+      case ThemeMode.dark:
+        newTheme = ThemeMode.system;
+        break;
+      case ThemeMode.system:
+        newTheme = ThemeMode.light;
+        break;
+    }
+    
     await _themeRepository.saveThemeMode(newTheme);
   }
 }
