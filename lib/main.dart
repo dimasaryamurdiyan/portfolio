@@ -11,80 +11,102 @@ void main() {
   );
 }
 
-class MyApp extends ConsumerWidget { // Use ConsumerWidget to access providers
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) { // Add WidgetRef to build method
-    final themeMode = ref.watch(themeModeProvider); // Watch the themeModeProvider
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeModeProvider);
 
     return MaterialApp(
       title: 'Dimas Arya Murdiyan - Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.blue,
         fontFamily: 'Inter',
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white, // Lighter background
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey[50], // Match scaffold background
+          foregroundColor: Colors.black87,
+          elevation: 0,
         ),
         cardTheme: CardTheme(
           color: Colors.white,
           elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF0065F8),
           brightness: Brightness.light,
         ).copyWith(
-          secondary: Colors.lightBlueAccent,
-          background: Colors.grey[100],
-          onBackground: Colors.black87,
+          primary: const Color(0xFF0065F8),
           surface: Colors.white,
           onSurface: Colors.black87,
           onSurfaceVariant: Colors.grey[700],
-          primaryContainer: Colors.blue.shade100,
-          onPrimaryContainer: Colors.blue.shade900,
-          secondaryContainer: Colors.lightBlueAccent.shade100,
-          onSecondaryContainer: Colors.lightBlueAccent.shade700,
-          tertiaryContainer: Colors.green.shade100,
-          onTertiaryContainer: Colors.green.shade900,
+          surfaceContainerHighest: Colors.grey[200], // For placeholder image background
         ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
         fontFamily: 'Inter',
+        scaffoldBackgroundColor: Colors.grey[900], // Darker background
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blueGrey[900],
-          foregroundColor: Colors.white,
+          backgroundColor: Colors.grey[900], // Match scaffold background
+          foregroundColor: Colors.white70,
+          elevation: 0,
         ),
         cardTheme: CardTheme(
           color: Colors.blueGrey[800],
           elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF0065F8),
           brightness: Brightness.dark,
         ).copyWith(
-          secondary: Colors.cyan,
-          background: Colors.grey[900],
-          onBackground: Colors.white70,
+          primary: const Color(0xFF0065F8),
           surface: Colors.blueGrey[800],
           onSurface: Colors.white70,
           onSurfaceVariant: Colors.grey[400],
-          primaryContainer: Colors.blue.shade900,
-          onPrimaryContainer: Colors.blue.shade100,
-          secondaryContainer: Colors.cyan.shade900,
-          onSecondaryContainer: Colors.cyan.shade100,
-          tertiaryContainer: Colors.green.shade900,
-          onTertiaryContainer: Colors.green.shade100,
+          surfaceContainerHighest: Colors.blueGrey[700], // For placeholder image background
         ),
       ),
-      themeMode: themeMode, // Use the themeMode from the provider
-      home: const HomePage(), // HomePage no longer needs toggleTheme callback
+      themeMode: themeMode,
+      home: const HomePage(),
     );
   }
 }
