@@ -21,7 +21,7 @@ class ProjectCard extends StatelessWidget {
   Future<void> _launchUrl(String url) async {
     final Uri uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
-      if(kDebugMode) {
+      if (kDebugMode) {
         print('Could not launch $url');
       }
     }
