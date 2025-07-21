@@ -19,68 +19,50 @@ class MyApp extends ConsumerWidget { // Use ConsumerWidget to access providers
     final themeMode = ref.watch(themeModeProvider); // Watch the themeModeProvider
 
     return MaterialApp(
-      title: 'Dimas Arya Murdiyan - Portfolio',
+      title: 'Jay Jhaveri - Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
         fontFamily: 'Inter',
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          foregroundColor: Colors.black,
         ),
-        cardTheme: CardTheme(
-          color: Colors.white,
-          elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        ),
+        scaffoldBackgroundColor: Colors.transparent,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.blue,
           brightness: Brightness.light,
         ).copyWith(
-          secondary: Colors.lightBlueAccent,
-          background: Colors.grey[100],
+          primary: const Color(0xFF4F46E5), // Indigo
+          secondary: const Color(0xFF7C3AED), // Purple
+          background: Colors.transparent,
           onBackground: Colors.black87,
-          surface: Colors.white,
+          surface: Colors.white.withOpacity(0.9),
           onSurface: Colors.black87,
-          onSurfaceVariant: Colors.grey[700],
-          primaryContainer: Colors.blue.shade100,
-          onPrimaryContainer: Colors.blue.shade900,
-          secondaryContainer: Colors.lightBlueAccent.shade100,
-          onSecondaryContainer: Colors.lightBlueAccent.shade700,
-          tertiaryContainer: Colors.green.shade100,
-          onTertiaryContainer: Colors.green.shade900,
         ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
         fontFamily: 'Inter',
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blueGrey[900],
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           foregroundColor: Colors.white,
         ),
-        cardTheme: CardTheme(
-          color: Colors.blueGrey[800],
-          elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        ),
+        scaffoldBackgroundColor: Colors.transparent,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
         ).copyWith(
-          secondary: Colors.cyan,
-          background: Colors.grey[900],
+          primary: const Color(0xFF6366F1), // Lighter indigo for dark mode
+          secondary: const Color(0xFF8B5CF6), // Lighter purple for dark mode
+          background: Colors.transparent,
           onBackground: Colors.white70,
-          surface: Colors.blueGrey[800],
+          surface: Colors.black.withOpacity(0.3),
           onSurface: Colors.white70,
-          onSurfaceVariant: Colors.grey[400],
-          primaryContainer: Colors.blue.shade900,
-          onPrimaryContainer: Colors.blue.shade100,
-          secondaryContainer: Colors.cyan.shade900,
-          onSecondaryContainer: Colors.cyan.shade100,
-          tertiaryContainer: Colors.green.shade900,
-          onTertiaryContainer: Colors.green.shade100,
         ),
       ),
       themeMode: themeMode, // Use the themeMode from the provider

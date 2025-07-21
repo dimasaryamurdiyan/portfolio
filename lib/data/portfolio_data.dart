@@ -1,136 +1,100 @@
 class PortfolioData {
-  static const String name = "Dimas Arya Murdiyan";
-  static const String title = "Android Engineer";
-  static const String location = "Jakarta, Indonesia";
-  static const String email = "dimasaryamurdiyan123@gmail.com";
-  static const String phone = "+6289601389327";
-  static const String githubUrl = "https://github.com/dimasaryamurdiyan";
-  static const String linkedinUrl = "https://linkedin.com/in/dimasaryamurdiyan"; 
+  static const String name = "Jay Jhaveri";
+  static const String title = "Senior Software Engineer | AI Integration Specialist";
+  static const String location = "Remote";
+  static const String email = "jay@jhaveri.dev";
+  static const String phone = "+1-555-0123";
+  static const String githubUrl = "https://github.com/jayjhaveri";
+  static const String linkedinUrl = "https://linkedin.com/in/jayjhaveri"; 
+
+  static const String heroDescription = 
+      "I engineer intelligent systems that automate workflows, power user experiences, and leverage AI innovation.";
 
   static const String aboutMe =
-      "Android Engineer with over 4 years of experience in developing, improving, and maintaining native Android applications. "
-      "Proficient in a range of modern technologies including Kotlin, MVVM Architecture, Android Jetpack, Jetpack Compose, Hilt, Koin, RxJava, "
-      "Coroutines, Room, CI/CD Fastlane, and Firebase. Proven ability to lead feature development, collaborate with cross-functional "
-      "teams, and deliver scalable solutions. Passionate about mobile development and delivering high-quality applications.";
+      "A Senior Software Engineer with 8+ years of experience blending mobile development expertise with cutting-edge AI technologies. I specialize in building intelligent, production-ready applications using Flutter, Firebase Cloud Functions, and Generative AI models like OpenAI and Anthropic. Focused on turning ideas into scalable products, automating workflows, and delivering seamless user experiences.";
 
-  static final List<Map<String, String>> professionalExperience = [
+  static final List<Map<String, String>> projects = [
     {
-      "company": "KipasKipas",
-      "role": "Android Engineer",
-      "dates": "Oct 2023 - Present",
-      "location": "Jakarta, Indonesia",
-      "description": "First social-commerce and crowdfunding application from Indonesia.",
-      "responsibilities":
-          "• Actively involved in Android application development, including bug fixing and maintenance.\n"
-          "• Successfully integrated Huawei Push Service in the first week of joining the team.\n"
-          "• Highly contribute to the live stream feature development.\n"
-          "• Collaborated with local and international engineering teams.\n"
-          "• Initiated and executed the implementation of feature flags, enhancing the app's agility and allowing for controlled feature rollouts and testing.\n"
-          "• Achieved a 20% reduction in app size.\n"
-          "• Set up Continuous Integration/Continuous Deployment (CI/CID) pipelines using Fastlane and collaborate with devops to set up Jenkins, reducing deployment time by 30%.",
-      "tech_stacks": "Kotlin, Android Jetpack, MVVM, Koin, Coroutines, Modularization, Dependency Injection, CI/CD"
+      "title": "TiramAI - From Concept to Creation",
+      "description": "Built TiramAI, an AI-driven mobile code generation and self-healing engine. It generates full Flutter apps from user text or voice prompts — and continuously evolves them. Users can report issues or suggest improvements directly from the app. TiramAI analyzes feedback, regenerates affected screens, and automatically updates the apps to Play Store and App Store — accelerating traditional development cycles by 10x. 20+ production-ready apps generated and shipped in beta using this system.",
+      "tech": "Flutter, Firebase, OpenAI, AI/ML",
+      "featured": true,
+      "url": "https://play.google.com/store/apps/developer?id=TiramAI",
+      "status": "View Beta Apps on Play Store"
     },
     {
-      "company": "Freelance / Self-Employed",
-      "role": "Android Engineer",
-      "dates": "Jan 2023 - June 2023",
-      "location": "Remote, Indonesia",
-      "description": "Develop and maintain apps based on client needs.",
-      "responsibilities": "• Develop and maintain apps based on client needs.",
-      "tech_stacks": "Kotlin, Android Jetpack, MVP"
+      "title": "CareAlert – Wellness Monitoring App",
+      "description": "Migrated the CareAlert mobile app to Flutter, improving scalability, stability, and maintenance efficiency.",
+      "tech": "Flutter, Mobile Development",
+      "featured": false,
+      "status": "View Project"
     },
     {
-      "company": "Binar Academy",
-      "role": "Android Engineer",
-      "dates": "Oct 2021 - Dec 2022",
-      "location": "Remote, Indonesia",
-      "description": "Access to the best quality education to upskilling digital talent in Indonesia. Focusing on bootcamp, network events, and digital courses.",
-      "responsibilities":
-          "• Develop, improve, and maintain native Android apps Binar Academy.\n"
-          "• Handle bug fixing and performance monitoring.\n"
-          "• Perform peer reviews, write unit tests and contribute ideas to improve the quality of the codebase.\n"
-          "• Improve code coverage by 40% and achieve a 98% crash-free user rate.\n"
-          "• Within a cross-functional team, collaborate with other engineers specializing in backend, web frontend, ios, and QA team, as well as product design, product managers and ideation with scrum and/or kanban.",
-      "tech_stacks": "Kotlin, Android Jetpack, MVVM, RxJava, Hilt, Coroutines, Firebase, Dependency Injection, Mockito, EventBus"
+      "title": "Product Engineering Bridge",
+      "description": "Built an MVP tool for better PM-engineering collaboration. Breaks down product ideas into features, clarifications, and tech stack.",
+      "tech": "Product Management, Engineering",
+      "featured": false,
+      "status": "View Project"
     },
     {
-      "company": "Widya Analytic",
-      "role": "Android Engineer",
-      "dates": "Nov 2020 - Oct 2021",
-      "location": "Yogyakarta, Indonesia",
-      "description": "Big data analytic startup that focusing on social media analysis to compare your competitors with instagram or twitter.",
-      "responsibilities":
-          "• Independently conceptualized and implemented Toba apps with a strong sense of code ownership..\n"
-          "• Involved in developing an android app for tongue detection using flutter without supervision.",
-      "tech_stacks": "Kotlin, Flutter, Android Jetpack, MVVM, Firebase"
+      "title": "Stock Buddy - Indian Stock Advisor",
+      "description": "Developed a conversational AI for Indian stock investors to check stock valuation metrics and offer beginner-friendly advice.",
+      "tech": "AI, Finance, Flutter",
+      "featured": false,
+      "status": "View Project"
     },
     {
-      "company": "Kios Rakyat",
-      "role": "Android Engineer",
-      "dates": "Feb 2020 - Aug 2020",
-      "location": "Yogyakarta, Indonesia",
-      "description": "An innovative platform enabling kiosk owners to efficiently manage their products and facilitate user orders.",
-      "responsibilities":
-          "• Single-handedly conceived, designed, and developed Kios Rakyat-Retail v1.0.\n"
-          "• Seamlessly integrated a real-time chat feature leveraging Firebase technology, enhancing user engagement and satisfaction.",
-      "tech_stacks": "Java, Firebase, MVVM"
+      "title": "The Eternal Journey - AI Comic",
+      "description": "Created an AI-generated mythological comic series, blending storytelling and visual design through Generative AI models.",
+      "tech": "AI, Creative Technology",
+      "featured": false,
+      "status": "View Project"
+    },
+    {
+      "title": "IoT Smart Air Purifier App",
+      "description": "Built a Bluetooth-enabled Flutter app to control smart air purifiers, improving product usability and control experience.",
+      "tech": "IoT, Flutter, Bluetooth",
+      "featured": false,
+      "status": "Coming Soon"
+    },
+  ];
+
+  static final List<Map<String, String>> techStack = [
+    {
+      "name": "Flutter",
+      "icon": "🐦", // Will be replaced with actual icon
+    },
+    {
+      "name": "Firebase", 
+      "icon": "🔥",
+    },
+    {
+      "name": "OpenAI",
+      "icon": "🤖",
+    },
+    {
+      "name": "TypeScript",
+      "icon": "📘",
+    },
+    {
+      "name": "Anthropic",
+      "icon": "🧠",
+    },
+    {
+      "name": "Flutter",
+      "icon": "🐦",
     },
   ];
 
   static final Map<String, List<String>> skills = {
-    "Languages": ["Kotlin", "Java", "Dart"],
-    "Technologies": [
-      "Android Jetpack",
-      "MVVM",
-      "Jetpack Compose",
-      "Coroutines",
-      "RxJava",
-      "Hilt",
-      "Koin",
-      "Firebase",
-      "Fastlane",
-      "Jenkins",
-      "Flutter",
-      "Mockito",
-      "EventBus",
-      "Jira",
-      "Room",
-      "Figma",
-      "Git"
-    ],
-    "Skills": [
-      "Modularization",
-      "Dependency Injection",
-      "CI/CD",
-      "Unit Testing",
-      "Code Review",
-      "A/B Testing",
-      "Feature Flags",
-      "Clean Arch"
-    ],
+    "Core Technologies": ["Flutter", "Firebase", "TypeScript", "Dart"],
+    "AI & ML": ["OpenAI", "Anthropic", "GPT Models", "AI Integration", "Machine Learning"],
+    "Backend & Cloud": ["Firebase Functions", "Cloud Functions", "REST APIs", "Authentication"],
+    "Mobile Development": ["iOS", "Android", "Cross-platform", "App Store", "Play Store"],
+    "Development Tools": ["Git", "CI/CD", "Agile", "Product Management", "Code Generation"]
   };
 
-  static final List<Map<String, String>> education = [
-    {
-      "institution": "Binus University",
-      "degree": "Bachelor's Degree in Computer Science",
-      "gpa": "3.68/4.00",
-      "dates": "May 2023 - Now",
-    },
-    {
-      "institution": "Universitas Gadjah Mada",
-      "degree": "Assoc. D. in Computer Science",
-      "gpa": "3.75/4.00",
-      "dates": "Aug 2017 - Aug 2020",
-      "awards": "Finalist Pertamina Hackathon Energy 2.0 2019",
-    },
-  ];
-
-  static final List<String> certificates = [
-    "Dicoding Indonesia: Belajar Prinsip Pemrograman SOLID",
-    "Dicoding Indonesia: Memulai Pemrograman dengan Kotlin",
-    "Dicoding Indonesia: Belajar Android Jetpack Pro",
-    "Dicoding Indonesia: Belajar Pemrograman Dart",
-    "Dicoding Indonesia: Membuat Aplikasi Flutter untuk Pemula",
-  ];
+  static const String contactTitle = "Let's Work Together";
+  static const String contactDescription = 
+      "I'm always excited to collaborate, innovate, and build meaningful solutions. Whether you have a project, a job opportunity, or just want to connect — let's talk!";
 }
