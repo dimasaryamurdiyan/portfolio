@@ -1,0 +1,24 @@
+name: Gh-Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.7.0'
+
+    - name: Deploy to GitHub Pages
+      uses: bluefireteam/flutter-gh-pages@v8
+      with:
+        baseHref: '/portfolio/'
+        webRenderer: canvaskit
