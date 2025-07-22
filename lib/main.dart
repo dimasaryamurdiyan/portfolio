@@ -30,7 +30,7 @@ class MyApp extends ConsumerWidget {
           foregroundColor: Colors.black87,
           elevation: 0,
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: Colors.white,
           elevation: 4,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -72,7 +72,7 @@ class MyApp extends ConsumerWidget {
           foregroundColor: Colors.white70,
           elevation: 0,
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: Colors.blueGrey[800],
           elevation: 4,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
