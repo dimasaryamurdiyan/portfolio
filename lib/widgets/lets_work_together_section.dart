@@ -41,7 +41,7 @@ class LetsWorkTogetherSection extends StatelessWidget {
           ElevatedButton(
             onPressed: onGetInTouchPressed,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
+              backgroundColor: Theme.of(context).colorScheme.onSurface,
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: isLargeScreen ? 20 : 16),
