@@ -33,7 +33,7 @@ class LetsWorkTogetherSection extends StatelessWidget {
               style: TextStyle(
                 fontSize: isLargeScreen ? 18 : 16,
                 height: 1.6,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ),

@@ -18,8 +18,8 @@ class WhatIDoSection extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             theme.colorScheme.surface,
-            theme.colorScheme.surface.withOpacity(0.8),
-            theme.colorScheme.primaryContainer.withOpacity(0.1),
+            theme.colorScheme.surface.withValues(alpha: .8),
+            theme.colorScheme.primaryContainer.withValues(alpha: .1),
           ],
         ),
       ),
@@ -55,7 +55,7 @@ class WhatIDoSection extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     theme.colorScheme.onSurface,
-                    theme.colorScheme.onSurfaceVariant,
+                    theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   ],
                 ),
               ),
@@ -72,14 +72,14 @@ class WhatIDoSection extends StatelessWidget {
                 color: theme.colorScheme.surface,
                 boxShadow: [
                   BoxShadow(
-                    color: theme.colorScheme.shadow.withOpacity(0.1),
+                    color: theme.colorScheme.shadow.withValues(alpha: .1),
                     blurRadius: 30,
                     offset: const Offset(0, 10),
                     spreadRadius: 0,
                   ),
                 ],
                 border: Border.all(
-                  color: theme.colorScheme.outline.withOpacity(0.1),
+                  color: theme.colorScheme.outline.withValues(alpha: .1),
                   width: 1,
                 ),
               ),
@@ -102,8 +102,8 @@ class WhatIDoSection extends StatelessWidget {
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      theme.colorScheme.primary.withOpacity(0.1),
-                                      theme.colorScheme.secondary.withOpacity(0.1),
+                                      theme.colorScheme.primary.withValues(alpha: .1),
+                                      theme.colorScheme.secondary.withValues(alpha: .1),
                                     ],
                                   ),
                                 ),
@@ -123,7 +123,7 @@ class WhatIDoSection extends StatelessWidget {
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: theme.colorScheme.shadow.withOpacity(0.2),
+                                        color: theme.colorScheme.shadow.withValues(alpha: .2),
                                         blurRadius: 25,
                                         offset: const Offset(0, 10),
                                       ),
@@ -139,15 +139,15 @@ class WhatIDoSection extends StatelessWidget {
                                             shape: BoxShape.circle,
                                             gradient: LinearGradient(
                                               colors: [
-                                                theme.colorScheme.primary.withOpacity(0.3),
-                                                theme.colorScheme.secondary.withOpacity(0.3),
+                                                theme.colorScheme.primary.withValues(alpha: .3),
+                                                theme.colorScheme.secondary.withValues(alpha: .3),
                                               ],
                                             ),
                                           ),
                                           child: Icon(
                                             Icons.person,
                                             size: 80,
-                                            color: theme.colorScheme.onSurface.withOpacity(0.5),
+                                            color: theme.colorScheme.onSurface.withValues(alpha: .5),
                                           ),
                                         );
                                       },
@@ -170,7 +170,7 @@ class WhatIDoSection extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 18,
                                     height: 1.7,
-                                    color: theme.colorScheme.onSurface.withOpacity(0.8),
+                                    color: theme.colorScheme.onSurface.withValues(alpha: .8),
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -181,9 +181,9 @@ class WhatIDoSection extends StatelessWidget {
                                   padding: const EdgeInsets.all(20),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
-                                    color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+                                    color: theme.colorScheme.primaryContainer.withValues(alpha: .3),
                                     border: Border.all(
-                                      color: theme.colorScheme.primary.withOpacity(0.2),
+                                      color: theme.colorScheme.primary.withValues(alpha: .2),
                                     ),
                                   ),
                                   child: Row(
@@ -226,8 +226,8 @@ class WhatIDoSection extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   gradient: LinearGradient(
                                     colors: [
-                                      theme.colorScheme.primary.withOpacity(0.1),
-                                      theme.colorScheme.secondary.withOpacity(0.1),
+                                      theme.colorScheme.primary.withValues(alpha: .1),
+                                      theme.colorScheme.secondary.withValues(alpha: .1),
                                     ],
                                   ),
                                 ),
@@ -243,7 +243,7 @@ class WhatIDoSection extends StatelessWidget {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: theme.colorScheme.shadow.withOpacity(0.2),
+                                      color: theme.colorScheme.shadow.withValues(alpha: .2),
                                       blurRadius: 20,
                                       offset: const Offset(0, 8),
                                     ),
@@ -259,15 +259,15 @@ class WhatIDoSection extends StatelessWidget {
                                           shape: BoxShape.circle,
                                           gradient: LinearGradient(
                                             colors: [
-                                              theme.colorScheme.primary.withOpacity(0.3),
-                                              theme.colorScheme.secondary.withOpacity(0.3),
+                                              theme.colorScheme.primary.withValues(alpha: .3),
+                                              theme.colorScheme.secondary.withValues(alpha: .3),
                                             ],
                                           ),
                                         ),
                                         child: Icon(
                                           Icons.person,
                                           size: 60,
-                                          color: theme.colorScheme.onSurface.withOpacity(0.5),
+                                          color: theme.colorScheme.onSurface.withValues(alpha: .5),
                                         ),
                                       );
                                     },
@@ -284,7 +284,7 @@ class WhatIDoSection extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               height: 1.7,
-                              color: theme.colorScheme.onSurface.withOpacity(0.8),
+                              color: theme.colorScheme.onSurface.withValues(alpha: .8),
                               fontWeight: FontWeight.w400,
                             ),
                             textAlign: TextAlign.center,
@@ -296,9 +296,9 @@ class WhatIDoSection extends StatelessWidget {
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+                              color: theme.colorScheme.primaryContainer.withValues(alpha: .3),
                               border: Border.all(
-                                color: theme.colorScheme.primary.withOpacity(0.2),
+                                color: theme.colorScheme.primary.withValues(alpha: .2),
                               ),
                             ),
                             child: Row(

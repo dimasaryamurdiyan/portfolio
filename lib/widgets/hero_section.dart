@@ -144,7 +144,7 @@ class _HeroSectionState extends State<HeroSection>
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                           width: 1.5,
                         ),
                       ),
@@ -167,7 +167,7 @@ class _HeroSectionState extends State<HeroSection>
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                           width: 1.5,
                         ),
                       ),
@@ -190,7 +190,7 @@ class _HeroSectionState extends State<HeroSection>
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                           width: 1.5,
                         ),
                       ),
@@ -231,7 +231,7 @@ class _HeroSectionState extends State<HeroSection>
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.5),
+                                color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
                                 width: 2,
                               ),
                             ),
@@ -267,7 +267,7 @@ const SizedBox(height: 16),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
                       letterSpacing: 1.2,
                     ),
                   ),
