@@ -8,10 +8,12 @@ class SkillChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Chip(
       label: Text(skill),
-      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-      labelStyle: TextStyle(color: Theme.of(context).colorScheme.onTertiaryContainer),
+      backgroundColor: theme.colorScheme.surface,
+      labelStyle: TextStyle(color: theme.colorScheme.onSurface),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     );
   }
