@@ -25,8 +25,8 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
   }
 
   Future<void> toggleTheme() async {
-    await _changeThemeUseCase.toggleTheme(state);
-    state = await _changeThemeUseCase.loadTheme(); // Reload to get the updated value
+    final newTheme = await _changeThemeUseCase.toggleTheme(state);
+    state = newTheme;
   }
 }
 
