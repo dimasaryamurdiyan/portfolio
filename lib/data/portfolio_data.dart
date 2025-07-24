@@ -1,6 +1,7 @@
 class PortfolioData {
   static const String name = "Dimas Arya Murdiyan";
-  static const String title = "Android Developer | Mobile Developer";
+  static const String codeName = "DM";
+  static const String title = "Android Engineer | Mobile Engineer";
   static const String location = "Jakarta, Indonesia";
   static const String email = "dimasaryamurdiyan123@gmail.com";
   static const String phone = "+6289601389327";
@@ -29,7 +30,7 @@ class PortfolioData {
           "• Achieved a 20% reduction in app size.\n"
           "• Set up Continuous Integration/Continuous Deployment (CI/CID) pipelines using Fastlane and collaborate with devops to set up Jenkins, reducing deployment time by 30%.",
       "tech_stacks": "Kotlin, Android Jetpack, MVVM, Koin, Coroutines, Modularization, Dependency Injection, CI/CD",
-      "image_url": "https://placehold.co/600x400/E0F2F7/000?text=KipasKipas", // Placeholder image
+      "logo_path": "assets/kipaskipas.png",
       "card_color": "#FEE8E8",
     },
     {
@@ -40,7 +41,7 @@ class PortfolioData {
       "description": "Develop and maintain apps based on client needs.",
       "responsibilities": "• Develop and maintain apps based on client needs.",
       "tech_stacks": "Kotlin, Android Jetpack, MVP",
-      "image_url": "https://placehold.co/600x400/F3E5F5/000?text=Freelance", // Placeholder image
+      "logo_path": "", // No logo for freelance work
       "card_color": "#E8F5E9",
     },
     {
@@ -56,7 +57,7 @@ class PortfolioData {
           "• Improve code coverage by 40% and achieve a 98% crash-free user rate.\n"
           "• Within a cross-functional team, collaborate with other engineers specializing in backend, web frontend, ios, and QA team, as well as product design, product managers and ideation with scrum and/or kanban.",
       "tech_stacks": "Kotlin, Android Jetpack, MVVM, RxJava, Hilt, Coroutines, Firebase, Dependency Injection, Mockito, EventBus",
-      "image_url": "https://placehold.co/600x400/FFFDE7/000?text=Binar+Academy", // Placeholder image
+      "logo_path": "assets/binar.webp",
       "card_color": "#E8FEE8",
     },
     {
@@ -69,7 +70,7 @@ class PortfolioData {
           "• Independently conceptualized and implemented Toba apps with a strong sense of code ownership..\n"
           "• Involved in developing an android app for tongue detection using flutter without supervision.",
       "tech_stacks": "Kotlin, Flutter, Android Jetpack, MVVM, Firebase",
-      "image_url": "https://placehold.co/600x400/E8F5E9/000?text=Widya+Analytic", // Placeholder image
+      "logo_path": "assets/widya.png",
       "card_color": "#FFFEE8",
     },
     {
@@ -82,7 +83,7 @@ class PortfolioData {
           "• Single-handedly conceived, designed, and developed Kios Rakyat-Retail v1.0.\n"
           "• Seamlessly integrated a real-time chat feature leveraging Firebase technology, enhancing user engagement and satisfaction.",
       "tech_stacks": "Java, Firebase, MVVM",
-      "image_url": "https://placehold.co/600x400/FCE4EC/000?text=Kios+Rakyat", // Placeholder image
+      "logo_path": "assets/kiosrakyat.png",
       "card_color": "#F8EEFE",
     },
   ];

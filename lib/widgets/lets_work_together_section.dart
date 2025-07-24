@@ -10,7 +10,7 @@ class LetsWorkTogetherSection extends StatelessWidget {
     final isLargeScreen = MediaQuery.of(context).size.width > 800;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 24),
+      padding: const EdgeInsets.symmetric(vertical: 120.0, horizontal: 24),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -20,7 +20,7 @@ class LetsWorkTogetherSection extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: isLargeScreen ? 48 : 36,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
               color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
@@ -33,7 +33,7 @@ class LetsWorkTogetherSection extends StatelessWidget {
               style: TextStyle(
                 fontSize: isLargeScreen ? 18 : 16,
                 height: 1.6,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ),
@@ -41,7 +41,7 @@ class LetsWorkTogetherSection extends StatelessWidget {
           ElevatedButton(
             onPressed: onGetInTouchPressed,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
+              backgroundColor: Theme.of(context).colorScheme.onSurface,
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: isLargeScreen ? 20 : 16),

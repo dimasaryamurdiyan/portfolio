@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/widgets/custom_app_bar.dart';
+import 'package:portfolio/widgets/experience_section.dart';
 import 'package:portfolio/widgets/hero_section.dart';
 import 'package:portfolio/widgets/lets_work_together_section.dart';
-import 'package:portfolio/widgets/project_card.dart';
 import 'package:portfolio/widgets/section_header.dart';
 import 'package:portfolio/widgets/tech_i_work_with_section.dart';
 import 'package:portfolio/widgets/what_i_do_section.dart';
@@ -21,7 +21,7 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _aboutKey = GlobalKey();
-  final GlobalKey _projectsKey = GlobalKey(); // Renamed from _experienceKey
+  final GlobalKey _experienceKey = GlobalKey(); // Changed from _projectsKey to _experienceKey
   final GlobalKey _contactKey = GlobalKey(); // Combined with "Let's Work Together"
 
   void _scrollToSection(GlobalKey key) {
@@ -45,12 +45,10 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
-
     return Scaffold(
       appBar: CustomAppBar(
         onAboutPressed: () => _scrollToSection(_aboutKey),
-        onProjectsPressed: () => _scrollToSection(_projectsKey),
+        onExperiencePressed: () => _scrollToSection(_experienceKey),
         onContactPressed: () => _scrollToSection(_contactKey),
       ),
       body: Column(
@@ -67,36 +65,18 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       // Hero Section
                       HeroSection(
-                        onViewProjectsPressed: () => _scrollToSection(_projectsKey),
                         onDownloadResumePressed: () => _launchUrl('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH'), // Replace with actual resume URL
                       ),
-                      const SizedBox(height: 80), // Spacing between sections
+                      const SizedBox(height: 60), // Spacing between sections
 
                       // What I do Section
                       WhatIDoSection(key: _aboutKey),
 
                       // Tech I Work With Section
-                      const TechIWorkWithSection(),
+                      TechIWorkWithSection(),
 
-                      // Projects Section (formerly Professional Experience)
-                      SectionHeader(key: _projectsKey, title: ""),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(), // Disable GridView's own scrolling
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: isLargeScreen ? 3 : (MediaQuery.of(context).size.width > 600 ? 2 : 1),
-                            crossAxisSpacing: 24.0,
-                            mainAxisSpacing: 24.0,
-                            childAspectRatio: isLargeScreen ? 1.4 : 1.6, // Increased aspect ratio to make cards shorter
-                          ),
-                          itemCount: PortfolioData.professionalExperience.length,
-                          itemBuilder: (context, index) {
-                            return ProjectCard(project: PortfolioData.professionalExperience[index]);
-                          },
-                        ),
-                      ),
+                      // Experience Section
+                      ExperienceSection(key: _experienceKey),
 
 
                       // Let's Work Together Section (Contact)
