@@ -73,7 +73,7 @@ class MyApp extends ConsumerWidget {
           elevation: 0,
         ),
         cardTheme: CardThemeData(
-          color: Colors.blueGrey[800],
+          color: Colors.grey[900],
           elevation: 4,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
@@ -99,10 +99,10 @@ class MyApp extends ConsumerWidget {
           brightness: Brightness.dark,
         ).copyWith(
           primary: const Color(0xFF0065F8),
-          surface: Colors.blueGrey[800],
-          onSurface: Colors.white70,
+          surface: Colors.grey[900],
+          onSurface: Colors.white,
           onSurfaceVariant: Colors.grey[400],
-          surfaceContainerHighest: Colors.blueGrey[700], // For placeholder image background
+          surfaceContainerHighest: Colors.grey[700], // For placeholder image background
         ),
       ),
       themeMode: themeMode,
