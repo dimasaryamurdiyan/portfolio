@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/widgets/custom_app_bar.dart';
-import 'package:portfolio/widgets/experience_item.dart';
+import 'package:portfolio/widgets/experience_section.dart';
 import 'package:portfolio/widgets/hero_section.dart';
 import 'package:portfolio/widgets/lets_work_together_section.dart';
 import 'package:portfolio/widgets/section_header.dart';
@@ -45,8 +45,6 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
-
     return Scaffold(
       appBar: CustomAppBar(
         onAboutPressed: () => _scrollToSection(_aboutKey),
@@ -78,60 +76,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       TechIWorkWithSection(),
 
                       // Experience Section
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: isLargeScreen ? 120 : 80,
-                          horizontal: isLargeScreen ? 120 : 40,
-                        ),
-                        child: Column(
-                          key: _experienceKey,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Section Title
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Experience",
-                                  style: TextStyle(
-                                    fontSize: isLargeScreen ? 48 : 36,
-                                    fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).colorScheme.onSurface,
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Container(
-                                  width: 80,
-                                  height: 4,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(2),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Theme.of(context).colorScheme.onSurface,
-                                        Theme.of(context).colorScheme.onSurfaceVariant,
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 40),
-                              ],
-                            ),
-                            
-                            // Experience Cards
-                            ListView.separated(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: PortfolioData.professionalExperience.length,
-                              separatorBuilder: (context, index) => const SizedBox(height: 24),
-                              itemBuilder: (context, index) {
-                                return ExperienceItem(
-                                  experience: PortfolioData.professionalExperience[index],
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                      ExperienceSection(key: _experienceKey),
 
 
                       // Let's Work Together Section (Contact)
