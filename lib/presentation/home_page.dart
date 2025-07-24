@@ -67,7 +67,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       // Hero Section
                       HeroSection(
-                        onViewProjectsPressed: () => _scrollToSection(_projectsKey),
                         onDownloadResumePressed: () => _launchUrl('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH'), // Replace with actual resume URL
                       ),
                       const SizedBox(height: 80), // Spacing between sections
