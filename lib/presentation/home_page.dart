@@ -69,13 +69,13 @@ class _HomePageState extends ConsumerState<HomePage> {
                       HeroSection(
                         onDownloadResumePressed: () => _launchUrl('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH'), // Replace with actual resume URL
                       ),
-                      const SizedBox(height: 80), // Spacing between sections
+                      const SizedBox(height: 60), // Spacing between sections
 
                       // What I do Section
                       WhatIDoSection(key: _aboutKey),
 
                       // Tech I Work With Section
-                      const TechIWorkWithSection(),
+                      TechIWorkWithSection(),
 
                       // Projects Section (formerly Professional Experience)
                       SectionHeader(key: _projectsKey, title: ""),
