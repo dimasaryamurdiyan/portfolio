@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/presentation/providers/theme_provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // Custom AppBar for the portfolio, including navigation and theme toggle.
 class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
@@ -97,14 +95,6 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      if (kDebugMode) {
-        print('Could not launch $url');
-      }
-    }
-  }
 }
 
 class _AppBarButton extends StatelessWidget {
