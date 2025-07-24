@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/widgets/custom_app_bar.dart';
+import 'package:portfolio/widgets/experience_item.dart';
 import 'package:portfolio/widgets/hero_section.dart';
 import 'package:portfolio/widgets/lets_work_together_section.dart';
-import 'package:portfolio/widgets/project_card.dart';
 import 'package:portfolio/widgets/section_header.dart';
 import 'package:portfolio/widgets/tech_i_work_with_section.dart';
 import 'package:portfolio/widgets/what_i_do_section.dart';
@@ -21,7 +21,7 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _aboutKey = GlobalKey();
-  final GlobalKey _projectsKey = GlobalKey(); // Renamed from _experienceKey
+  final GlobalKey _experienceKey = GlobalKey(); // Changed from _projectsKey to _experienceKey
   final GlobalKey _contactKey = GlobalKey(); // Combined with "Let's Work Together"
 
   void _scrollToSection(GlobalKey key) {
@@ -50,7 +50,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Scaffold(
       appBar: CustomAppBar(
         onAboutPressed: () => _scrollToSection(_aboutKey),
-        onProjectsPressed: () => _scrollToSection(_projectsKey),
+        onExperiencePressed: () => _scrollToSection(_experienceKey),
         onContactPressed: () => _scrollToSection(_contactKey),
       ),
       body: Column(
@@ -77,23 +77,59 @@ class _HomePageState extends ConsumerState<HomePage> {
                       // Tech I Work With Section
                       TechIWorkWithSection(),
 
-                      // Projects Section (formerly Professional Experience)
-                      SectionHeader(key: _projectsKey, title: ""),
+                      // Experience Section
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(), // Disable GridView's own scrolling
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: isLargeScreen ? 3 : (MediaQuery.of(context).size.width > 600 ? 2 : 1),
-                            crossAxisSpacing: 24.0,
-                            mainAxisSpacing: 24.0,
-                            childAspectRatio: isLargeScreen ? 1.4 : 1.6, // Increased aspect ratio to make cards shorter
-                          ),
-                          itemCount: PortfolioData.professionalExperience.length,
-                          itemBuilder: (context, index) {
-                            return ProjectCard(project: PortfolioData.professionalExperience[index]);
-                          },
+                        padding: EdgeInsets.symmetric(
+                          vertical: isLargeScreen ? 120 : 80,
+                          horizontal: isLargeScreen ? 120 : 40,
+                        ),
+                        child: Column(
+                          key: _experienceKey,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Section Title
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Experience",
+                                  style: TextStyle(
+                                    fontSize: isLargeScreen ? 48 : 36,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).colorScheme.onSurface,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Container(
+                                  width: 80,
+                                  height: 4,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(2),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Theme.of(context).colorScheme.onSurface,
+                                        Theme.of(context).colorScheme.onSurfaceVariant,
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 40),
+                              ],
+                            ),
+                            
+                            // Experience Cards
+                            ListView.separated(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: PortfolioData.professionalExperience.length,
+                              separatorBuilder: (context, index) => const SizedBox(height: 24),
+                              itemBuilder: (context, index) {
+                                return ExperienceItem(
+                                  experience: PortfolioData.professionalExperience[index],
+                                );
+                              },
+                            ),
+                          ],
                         ),
                       ),
 

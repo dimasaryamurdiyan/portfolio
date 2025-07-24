@@ -6,13 +6,13 @@ import 'package:portfolio/presentation/providers/theme_provider.dart';
 // Custom AppBar for the portfolio, including navigation and theme toggle.
 class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
   final VoidCallback onAboutPressed;
-  final VoidCallback onProjectsPressed;
+  final VoidCallback onExperiencePressed; // Changed from onProjectsPressed
   final VoidCallback onContactPressed;
 
   const CustomAppBar({
     super.key,
     required this.onAboutPressed,
-    required this.onProjectsPressed,
+    required this.onExperiencePressed, // Changed from onProjectsPressed
     required this.onContactPressed,
   });
 
@@ -49,6 +49,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
                       ]
                     ),
                   ),
+                  
                   // Right side - Theme toggle only
                   IconButton(
                     icon: Icon(Icons.light_mode, color: Theme.of(context).colorScheme.onSurface),
@@ -71,11 +72,14 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
         scrolledUnderElevation: 0,
         centerTitle: false,
         title: Text(
-          PortfolioData.name,
+          PortfolioData.codeName,
           style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
+            fontFamily: 'Black Han Sans',
+            fontSize: 20,
             color: Theme.of(context).colorScheme.onSurface,
+            fontVariations: [
+              FontVariation('wght', 800),
+            ]
           ),
         ),
         actions: [
@@ -95,31 +99,4 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-}
-
-class _AppBarButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-  final IconData icon;
-
-  const _AppBarButton({
-    required this.text,
-    required this.onPressed,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, color: Theme.of(context).colorScheme.onSurface),
-      label: Text(
-        text,
-        style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-      ),
-      style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-    );
-  }
 }
