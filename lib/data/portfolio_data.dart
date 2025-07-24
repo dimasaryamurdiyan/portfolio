@@ -1,5 +1,6 @@
 class PortfolioData {
   static const String name = "Dimas Arya Murdiyan";
+  static const String codeName = "DM";
   static const String title = "Android Developer | Mobile Developer";
   static const String location = "Jakarta, Indonesia";
   static const String email = "dimasaryamurdiyan123@gmail.com";
