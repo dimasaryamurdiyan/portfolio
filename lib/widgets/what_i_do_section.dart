@@ -29,20 +29,17 @@ class WhatIDoSection extends StatelessWidget {
           horizontal: isLargeScreen ? 120 : 40,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             // Main Title
             Text(
-              "About me?",
+              "About Me?",
               style: TextStyle(
-                fontSize: isLargeScreen ? 48 : 32,
-                fontWeight: FontWeight.bold,
+                fontFamily: 'Black Han Sans',
+                fontSize: isLargeScreen ? 40 : 28,
                 color: theme.colorScheme.onSurface,
-                height: 1.2,
-                letterSpacing: -0.5,
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
             ),
             const SizedBox(height: 16),
 

@@ -22,9 +22,9 @@ class TechIWorkWithSection extends StatelessWidget {
           Text(
             "Tech Stacks",
             style: TextStyle(
-              fontSize: isLargeScreen ? 42 : 20,
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.onSurface,
+                fontFamily: 'Black Han Sans',
+                fontSize: isLargeScreen ? 40 : 28,
+                color: theme.colorScheme.onSurface,
             ),
           ),
           Container(
