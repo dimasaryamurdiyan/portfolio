@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/data/portfolio_data.dart';
+import 'package:portfolio/services/analytics_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HeroSection extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HeroSectionState extends State<HeroSection>
   late Animation<double> _pulseAnimation;
   late AnimationController _dotController;
   late Animation<double> _dotAnimation;
+  final AnalyticsService _analytics = AnalyticsService();
 
   @override
   void initState() {
@@ -158,7 +160,10 @@ class _HeroSectionState extends State<HeroSection>
                             BlendMode.srcIn,
                           ),
                         ),
-                        onPressed: () => _launchUrl(PortfolioData.githubUrl),
+                        onPressed: () {
+                          _analytics.trackSocialMediaClick('github');
+                          _launchUrl(PortfolioData.githubUrl);
+                        },
                         tooltip: 'GitHub',
                       ),
                     ),
@@ -181,7 +186,10 @@ class _HeroSectionState extends State<HeroSection>
                             BlendMode.srcIn,
                           ),
                         ),
-                        onPressed: () => _launchUrl(PortfolioData.linkedinUrl),
+                        onPressed: () {
+                          _analytics.trackSocialMediaClick('linkedin');
+                          _launchUrl(PortfolioData.linkedinUrl);
+                        },
                         tooltip: 'LinkedIn',
                       ),
                     ),
