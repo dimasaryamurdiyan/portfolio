@@ -12,6 +12,7 @@ import 'package:portfolio/widgets/tech_i_work_with_section.dart';
 import 'package:portfolio/widgets/what_i_do_section.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io' show Platform;
+import 'dart:async' show unawaited;
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -45,11 +46,28 @@ class _HomePageState extends ConsumerState<HomePage> {
   void initState() {
     super.initState();
     _sessionStartTime = DateTime.now();
-    _setupAnalytics();
     _setupScrollListener();
+    _trackInitialPageView();
+    
+    // Handle async setup properly
+    _setupAnalytics().catchError((error) {
+      if (kDebugMode) {
+        print('Analytics setup error: $error');
+      }
+    });
   }
 
-  void _setupAnalytics() async {
+  void _trackInitialPageView() {
+    // Track page view once when widget is mounted
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_hasTrackedInitialPageView) {
+        _analytics.trackPageOpen();
+        _hasTrackedInitialPageView = true;
+      }
+    });
+  }
+
+  Future<void> _setupAnalytics() async {
     // Track session start and device info
     await _analytics.trackSessionStart();
     
@@ -82,11 +100,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       final currentPosition = _scrollController.position.pixels;
       final maxScrollExtent = _scrollController.position.maxScrollExtent;
       
-      // Track page open only once when user starts scrolling or after initial load
-      if (!_hasTrackedInitialPageView && currentPosition > 0) {
-        _analytics.trackPageOpen();
-        _hasTrackedInitialPageView = true;
-      }
+      // Page view is now tracked in initState, no need to track here
       
       // Track scroll depth every 25% increment
       final scrollPercentage = (currentPosition / maxScrollExtent) * 100;
@@ -115,9 +129,10 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void dispose() {
-    // Track session end
+    // Track session end - use unawaited to explicitly indicate we don't wait for completion
     final sessionDuration = DateTime.now().difference(_sessionStartTime).inSeconds;
-    _analytics.trackSessionEnd(sessionDuration);
+    unawaited(_analytics.trackSessionEnd(sessionDuration));
+    
     _scrollController.dispose();
     super.dispose();
   }
@@ -133,14 +148,6 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Track initial page view if user hasn't scrolled yet
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_hasTrackedInitialPageView) {
-        _analytics.trackPageOpen();
-        _hasTrackedInitialPageView = true;
-      }
-    });
-    
     return Scaffold(
       appBar: CustomAppBar(
         onAboutPressed: () {
