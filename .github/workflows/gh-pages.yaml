@@ -3,6 +3,9 @@ name: Gh-Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   build:
@@ -15,13 +18,20 @@ jobs:
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
 
-      # --- This is the new step to create the file from a secret ---
-    - name: Create firebase_options.dart
-      run: echo "${{ secrets.FIREBASE_OPTIONS_FILE }}" > lib/firebase_options.dart
+    - name: Create firebase_options.dart from secret
       env:
         FIREBASE_OPTIONS_FILE: ${{ secrets.FIREBASE_OPTIONS_FILE }}
+      run: |
+        echo "$FIREBASE_OPTIONS_FILE" > lib/firebase_options.dart
 
-    - name: Deploy to GitHub Pages
+    - name: Build Flutter Web (PR/Manual)
+      if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+      run: |
+        flutter pub get
+        flutter build web --release
+        
+    - name: Deploy to GitHub Pages (Main branch only)
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: bluefireteam/flutter-gh-pages@v9
       with:
         baseHref: '/'
