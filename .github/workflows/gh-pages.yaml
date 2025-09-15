@@ -15,6 +15,12 @@ jobs:
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
 
+      # --- This is the new step to create the file from a secret ---
+    - name: Create firebase_options.dart
+      run: echo "${{ secrets.FIREBASE_OPTIONS_FILE }}" > lib/firebase_options.dart
+      env:
+        FIREBASE_OPTIONS_FILE: ${{ secrets.FIREBASE_OPTIONS_FILE }}
+
     - name: Deploy to GitHub Pages
       uses: bluefireteam/flutter-gh-pages@v9
       with:
