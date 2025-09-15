@@ -24,7 +24,7 @@ class _HeroSectionState extends State<HeroSection>
   late Animation<double> _pulseAnimation;
   late AnimationController _dotController;
   late Animation<double> _dotAnimation;
-  final AnalyticsService _analytics = AnalyticsService();
+  final AnalyticsService _analytics = AnalyticsService.instance;
 
   @override
   void initState() {

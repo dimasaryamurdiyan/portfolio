@@ -3,8 +3,9 @@ import 'package:flutter/foundation.dart';
 
 class AnalyticsService {
   static final AnalyticsService _instance = AnalyticsService._internal();
-  factory AnalyticsService() => _instance;
   AnalyticsService._internal();
+  
+  static AnalyticsService get instance => _instance;
 
   final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
   FirebaseAnalyticsObserver get observer => FirebaseAnalyticsObserver(analytics: _analytics);

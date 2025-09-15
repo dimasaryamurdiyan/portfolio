@@ -16,7 +16,7 @@ final changeThemeUseCaseProvider = Provider<ChangeThemeUseCase>((ref) {
 // Notifier for the ThemeMode state
 class ThemeModeNotifier extends StateNotifier<ThemeMode> {
   final ChangeThemeUseCase _changeThemeUseCase;
-  final AnalyticsService _analytics = AnalyticsService();
+  final AnalyticsService _analytics = AnalyticsService.instance;
 
   ThemeModeNotifier(this._changeThemeUseCase) : super(ThemeMode.system) {
     _loadInitialTheme();

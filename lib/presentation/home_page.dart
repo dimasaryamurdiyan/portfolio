@@ -26,7 +26,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   final GlobalKey _experienceKey = GlobalKey(); // Changed from _projectsKey to _experienceKey
   final GlobalKey _contactKey = GlobalKey(); // Combined with "Let's Work Together"
   
-  final AnalyticsService _analytics = AnalyticsService();
+  final AnalyticsService _analytics = AnalyticsService.instance;
   late DateTime _sessionStartTime;
   double _lastScrollPosition = 0;
   bool _hasTrackedInitialPageView = false;
