@@ -16,9 +16,23 @@ class PortfolioData {
 
   static final List<Map<String, String>> professionalExperience = [
     {
+      "company": "Imago.us",
+      "role": "Android Engineer",
+      "dates": "Jul 2025 - Present",
+      "location": "Remote",
+      "description": "Interactive smartboard solutions for modern workplaces.",
+      "responsibilities":
+          "• Designed and delivered the dedicated Android OS version of IMAGO Collab for the IMAGO AIOS+ Smart Interactive Flat Panel (IFP), enabling real-time, multi-touch collaboration for Smart Education and Enterprise users.\n"
+          "• Optimized application rendering and drawing cycles, successfully improving overall rendering time by 25% and ensuring a fluid, low-latency user experience critical for real-time collaboration.\n"
+          "• Collaborated closely with cross-functional teams, including hardware engineers, UI/UX designers, and QA specialists, to ensure seamless integration of software features with the unique capabilities of the IMAGO AIOS+ Smart IFP hardware.\n",
+      "tech_stacks": "Kotlin, Java, Flutter, Android Jetpack, MVVM, Koin, Coroutines, Modularization, Dependency Injection, WebSocket",
+      "logo_path": "assets/imago.png",
+      "card_color": "#FEE8E8",
+    },
+    {
       "company": "KipasKipas",
       "role": "Android Engineer",
-      "dates": "Oct 2023 - Present",
+      "dates": "Oct 2023 - Apr 2025",
       "location": "Jakarta, Indonesia",
       "description": "First social-commerce and crowdfunding application from Indonesia.",
       "responsibilities":
@@ -107,7 +121,9 @@ class PortfolioData {
       "Jira",
       "Room",
       "Figma",
-      "Git"
+      "Git",
+      "GitHub Actions",
+      "WebSocket"
     ],
     "Skills": [
       "Modularization",
@@ -126,7 +142,7 @@ class PortfolioData {
       "institution": "Binus University",
       "degree": "Bachelor's Degree in Computer Science",
       "gpa": "3.68/4.00",
-      "dates": "May 2023 - Now",
+      "dates": "May 2023 - Jul 2025",
     },
     {
       "institution": "Universitas Gadjah Mada",
