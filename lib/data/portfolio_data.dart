@@ -6,7 +6,7 @@ class PortfolioData {
   static const String email = "dimasaryamurdiyan123@gmail.com";
   static const String phone = "+6289601389327";
   static const String githubUrl = "https://github.com/dimasaryamurdiyan";
-  static const String linkedinUrl = "https://linkedin.com/in/dimasaryamurdiyan"; 
+  static const String linkedinUrl = "https://linkedin.com/in/dimas-arya-murdiyan/"; 
 
   static const String aboutMe =
       "Android Engineer with over 4 years of experience in developing, improving, and maintaining native Android applications. "
