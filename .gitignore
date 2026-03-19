@@ -82,4 +82,5 @@ devtools_options.yaml
 
 # Claude Code
 .agents/
+.claude/
 skills-lock.json
