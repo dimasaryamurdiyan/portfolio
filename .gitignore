@@ -79,3 +79,7 @@ test/coverage/
 
 # Development tools
 devtools_options.yaml
+
+# Claude Code
+.agents/
+skills-lock.json
