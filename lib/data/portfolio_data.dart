@@ -9,7 +9,7 @@ class PortfolioData {
   static const String linkedinUrl = "https://linkedin.com/in/dimas-arya-murdiyan/"; 
 
   static const String aboutMe =
-      "Android Engineer with over 4 years of experience in developing, improving, and maintaining native Android applications. "
+      "Android Engineer with over 5 years of experience in developing, improving, and maintaining native Android applications. "
       "Proficient in a range of modern technologies including Kotlin, MVVM Architecture, Android Jetpack, Jetpack Compose, Hilt, Koin, RxJava, "
       "Coroutines, Room, CI/CD Fastlane, and Firebase. Proven ability to lead feature development, collaborate with cross-functional "
       "teams, and deliver scalable solutions. Passionate about mobile development and delivering high-quality applications.";
@@ -123,7 +123,10 @@ class PortfolioData {
       "Figma",
       "Git",
       "GitHub Actions",
-      "WebSocket"
+      "WebSocket",
+      "BLoC",
+      "GetX",
+      "Riverpod",
     ],
     "Skills": [
       "Modularization",
@@ -133,7 +136,7 @@ class PortfolioData {
       "Code Review",
       "A/B Testing",
       "Feature Flags",
-      "Clean Arch"
+      "Clean Architecture"
     ],
   };
 
