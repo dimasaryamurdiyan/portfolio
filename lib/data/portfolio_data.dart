@@ -191,7 +191,7 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
-      "web_url": "",
+      "web_url": "https://collab.imago.us",
       "card_color": "#F4F0EC",
     },
     {
@@ -225,7 +225,7 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
-      "web_url": "",
+      "web_url": "https://olive-oyster-501406.hostingersite.com/proctor-application/",
       "card_color": "#EEE7E1",
     },
     {
@@ -253,7 +253,7 @@ class PortfolioData {
       "card_color": "#FEE8E8",
     },
     {
-      "title": "Binar Academy App",
+      "title": "Binar App",
       "description": "Educational platform for upskilling digital talent in Indonesia",
       "detailed_description":
           "Binar Academy is an educational technology platform providing bootcamps, network events, "
