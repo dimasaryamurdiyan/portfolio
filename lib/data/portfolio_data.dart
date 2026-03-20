@@ -185,7 +185,7 @@ class PortfolioData {
         "WebSocket",
         "Room"
       ],
-      "logo_path": "assets/imago.png",
+      "logo_path": "assets/projects/collab.webp",
       "images": <String>[
         "assets/projects/collab_1.webp",
       ],
