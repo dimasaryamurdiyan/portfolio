@@ -191,6 +191,7 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#F4F0EC",
     },
     {
@@ -224,6 +225,7 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#EEE7E1",
     },
     {
@@ -247,6 +249,7 @@ class PortfolioData {
       ],
       "play_store_url": "https://play.google.com/store/apps/details?id=com.koanba.kipaskipas",
       "github_url": "",
+      "web_url": "https://kipaskipas.com",
       "card_color": "#FEE8E8",
     },
     {
@@ -270,6 +273,7 @@ class PortfolioData {
       ],
       "play_store_url": "https://play.google.com/store/apps/details?id=com.binaracedemy.app",
       "github_url": "",
+      "web_url": "https://www.binar.co.id",
       "card_color": "#E8FEE8",
     },
     {
@@ -287,10 +291,11 @@ class PortfolioData {
       "tech_stacks": ["Kotlin", "MVVM", "Firebase", "Android Jetpack"],
       "logo_path": "assets/widya.png",
       "images": <String>[
-        "assets/projects/toba_1.png",
+        "assets/projects/toba_1.webp",
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#FFFEE8",
     },
     {
@@ -312,6 +317,7 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#F8EEFE",
     },
     {
@@ -333,10 +339,13 @@ class PortfolioData {
       ],
       "logo_path": "assets/artefact.png",
       "images": <String>[
-        "assets/projects/artefact_1.png",
+        "assets/projects/artefact_1.webp",
+        "assets/projects/artefact_2.webp",
+        "assets/projects/artefact_3.webp",
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#3D8B78",
     },
   ];

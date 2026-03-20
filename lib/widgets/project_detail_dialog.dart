@@ -22,6 +22,7 @@ class ProjectDetailDialog extends StatelessWidget {
     final images = (project["images"] as List<String>?) ?? [];
     final playStoreUrl = project["play_store_url"] as String? ?? "";
     final githubUrl = project["github_url"] as String? ?? "";
+    final webUrl = project["web_url"] as String? ?? "";
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -211,7 +212,7 @@ class ProjectDetailDialog extends StatelessWidget {
                       ),
 
                       // Links Section
-                      if (playStoreUrl.isNotEmpty || githubUrl.isNotEmpty) ...[
+                      if (playStoreUrl.isNotEmpty || githubUrl.isNotEmpty || webUrl.isNotEmpty) ...[
                         const SizedBox(height: 32),
                         Container(
                           padding: const EdgeInsets.all(20),
@@ -276,6 +277,14 @@ class ProjectDetailDialog extends StatelessWidget {
                                       icon: Icons.code_rounded,
                                       label: "GitHub",
                                       onTap: () => UrlLauncherService.launch(githubUrl),
+                                      isPrimary: false,
+                                    ),
+                                  if (webUrl.isNotEmpty)
+                                    _buildLinkButton(
+                                      context,
+                                      icon: Icons.language_rounded,
+                                      label: "Website",
+                                      onTap: () => UrlLauncherService.launch(webUrl),
                                       isPrimary: false,
                                     ),
                                 ],
