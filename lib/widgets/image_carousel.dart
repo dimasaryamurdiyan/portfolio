@@ -226,7 +226,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
             // Image Counter Badge
             if (hasMultipleImages)
               Positioned(
-                top: 12,
+                bottom: 12,
                 right: 12,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
