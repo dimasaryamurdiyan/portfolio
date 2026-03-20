@@ -216,14 +216,17 @@ class _HeroSectionState extends State<HeroSection>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AnimatedBuilder(
-                    animation: _pulseAnimation,
-                    builder: (context, child) {
-                      return Transform.scale(
-                        scale: _pulseAnimation.value,
-                        child: GestureDetector(
-                          onTap: _scrollDown,
-                          child: Container(
+                  Semantics(
+                    button: true,
+                    label: 'Scroll down to see more content',
+                    child: AnimatedBuilder(
+                      animation: _pulseAnimation,
+                      builder: (context, child) {
+                        return Transform.scale(
+                          scale: _pulseAnimation.value,
+                          child: GestureDetector(
+                            onTap: _scrollDown,
+                            child: Container(
                             width: 40,
                             height: 80,
                             decoration: BoxDecoration(
@@ -256,10 +259,11 @@ class _HeroSectionState extends State<HeroSection>
                             ),
                           ),
                         ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-const SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                     "scroll down",
                     style: TextStyle(

@@ -27,12 +27,17 @@ class _ProjectCardState extends State<ProjectCard> {
     final images = (widget.project["images"] as List<String>?) ?? [];
     final hasImages = images.isNotEmpty;
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: AnimatedContainer(
+    final projectTitle = widget.project["title"] as String? ?? "Project";
+
+    return Semantics(
+      button: true,
+      label: 'View details for $projectTitle',
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeInOut,
           transform: Matrix4.identity()
@@ -75,6 +80,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                 images.first,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
+                                // Limit decoded image size for better memory performance
+                                cacheWidth: 600,
                                 errorBuilder: (context, error, stackTrace) {
                                   return _buildImagePlaceholder(theme, cardColor);
                                 },
@@ -130,6 +137,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                   child: Image.asset(
                                     widget.project["logo_path"] as String,
                                     fit: BoxFit.contain,
+                                    cacheWidth: 88, // 2x the display size for retina
+                                    cacheHeight: 88,
                                     errorBuilder: (context, error, stackTrace) {
                                       return _buildFallbackLogo(theme);
                                     },
@@ -274,9 +283,10 @@ class _ProjectCardState extends State<ProjectCard> {
                       ),
                     ],
                   ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
