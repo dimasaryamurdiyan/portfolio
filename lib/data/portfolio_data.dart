@@ -162,6 +162,36 @@ class PortfolioData {
   ];
 
   static final List<Map<String, dynamic>> projects = [
+    {
+      "title": "CollabNext",
+      "description": "Cross-platform collaboration app for mobile and desktop devices",
+      "detailed_description":
+          "CollabNext is a next-generation collaboration application built with Flutter, designed to work "
+          "seamlessly across mobile and desktop platforms. The app enables real-time collaboration with "
+          "a modern, responsive interface optimized for various screen sizes and input methods.\n\n"
+          "Key contributions:\n"
+          "• Developed cross-platform Flutter application for mobile and desktop\n"
+          "• Implemented state management using Bloc pattern for scalable architecture\n"
+          "• Built responsive UI that adapts to different screen sizes and platforms\n"
+          "• Focused on real-time collaboration features and performance optimization\n"
+          "• Ensured consistent user experience across Android, iOS, Windows, macOS, and Linux",
+      "tech_stacks": [
+        "Flutter",
+        "Dart",
+        "Bloc",
+        "Clean Architecture",
+        "WebSocket",
+        "Cross-platform"
+      ],
+      "logo_path": "assets/projects/collabnext.webp",
+      "images": <String>[
+        "assets/projects/collabnext_1.webp",
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "web_url": "https://collab.imago.buzz/home",
+      "card_color": "#E8F4F8",
+    },
       {
       "title": "Collab",
       "description": "Drawing collaboration app for Interactive Flat Panel (smartboard) devices",
