@@ -173,6 +173,23 @@ class AnalyticsService {
     }
   }
 
+  // Project viewing analytics
+  Future<void> trackProjectView(String projectName) async {
+    try {
+      await _analytics.logEvent(
+        name: 'project_view',
+        parameters: {
+          'project_name': projectName,
+          'timestamp': DateTime.now().millisecondsSinceEpoch,
+        },
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print('Analytics Error - trackProjectView: $e');
+      }
+    }
+  }
+
   // Set user properties
   Future<void> setUserProperty(String name, String value) async {
     try {
