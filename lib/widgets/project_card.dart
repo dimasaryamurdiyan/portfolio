@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/utils/color_utils.dart';
 
 class ProjectCard extends StatefulWidget {
   final Map<String, dynamic> project;
@@ -17,19 +18,11 @@ class ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<ProjectCard> {
   bool _isHovered = false;
 
-  Color _parseColor(String? hexColor) {
-    if (hexColor == null || hexColor.isEmpty) {
-      return Colors.grey.shade100;
-    }
-    final hex = hexColor.replaceAll('#', '');
-    return Color(int.parse('FF$hex', radix: 16));
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isLargeScreen = MediaQuery.of(context).size.width > 800;
-    final cardColor = _parseColor(widget.project["card_color"] as String?);
+    final cardColor = ColorUtils.parseHex(widget.project["card_color"] as String?);
     final techStacks = (widget.project["tech_stacks"] as List<dynamic>?) ?? [];
     final images = (widget.project["images"] as List<String>?) ?? [];
     final hasImages = images.isNotEmpty;

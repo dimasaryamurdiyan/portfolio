@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/utils/color_utils.dart';
 import 'package:portfolio/utils/url_launcher_service.dart';
 import 'package:portfolio/widgets/image_carousel.dart';
 
@@ -10,20 +11,12 @@ class ProjectDetailDialog extends StatelessWidget {
     required this.project,
   });
 
-  Color _parseColor(String? hexColor) {
-    if (hexColor == null || hexColor.isEmpty) {
-      return Colors.grey.shade100;
-    }
-    final hex = hexColor.replaceAll('#', '');
-    return Color(int.parse('FF$hex', radix: 16));
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final screenSize = MediaQuery.of(context).size;
     final isLargeScreen = screenSize.width > 800;
-    final cardColor = _parseColor(project["card_color"] as String?);
+    final cardColor = ColorUtils.parseHex(project["card_color"] as String?);
     final techStacks = (project["tech_stacks"] as List<dynamic>?) ?? [];
     final images = (project["images"] as List<String>?) ?? [];
     final playStoreUrl = project["play_store_url"] as String? ?? "";
