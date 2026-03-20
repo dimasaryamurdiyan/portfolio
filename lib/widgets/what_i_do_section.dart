@@ -131,6 +131,8 @@ class WhatIDoSection extends StatelessWidget {
                                     child: Image.asset(
                                       'assets/my.jpeg',
                                       fit: BoxFit.cover,
+                                      cacheWidth: 480, // 2x the display size for retina
+                                      cacheHeight: 480,
                                       errorBuilder: (context, error, stackTrace) {
                                         return Container(
                                           decoration: BoxDecoration(
@@ -251,6 +253,8 @@ class WhatIDoSection extends StatelessWidget {
                                   child: Image.asset(
                                     'assets/my.jpeg',
                                     fit: BoxFit.cover,
+                                    cacheWidth: 320, // 2x the display size for retina
+                                    cacheHeight: 320,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Container(
                                         decoration: BoxDecoration(
