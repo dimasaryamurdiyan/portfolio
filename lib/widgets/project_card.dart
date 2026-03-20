@@ -48,7 +48,9 @@ class _ProjectCardState extends State<ProjectCard> {
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: _isHovered
-                  ? theme.colorScheme.primary.withValues(alpha: 0.5)
+                  ? (theme.brightness == Brightness.dark
+                      ? theme.colorScheme.outline.withValues(alpha: 0.6)
+                      : theme.colorScheme.primary.withValues(alpha: 0.5))
                   : theme.colorScheme.outline.withValues(alpha: 0.1),
               width: _isHovered ? 2 : 1,
             ),
