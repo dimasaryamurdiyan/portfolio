@@ -1,203 +1,165 @@
+import 'dart:developer' as developer;
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 
+/// Centralized analytics service using Firebase Analytics.
+///
+/// Uses singleton pattern for consistent event tracking across the app.
 class AnalyticsService {
   static final AnalyticsService _instance = AnalyticsService._internal();
   AnalyticsService._internal();
-  
+
   static AnalyticsService get instance => _instance;
 
   final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
-  FirebaseAnalyticsObserver get observer => FirebaseAnalyticsObserver(analytics: _analytics);
+  FirebaseAnalyticsObserver get observer =>
+      FirebaseAnalyticsObserver(analytics: _analytics);
 
+  // ============================================================
+  // Private helper methods to reduce code duplication
+  // ============================================================
+
+  /// Logs an analytics event with error handling.
+  Future<void> _logEvent(
+    String name, {
+    Map<String, Object>? parameters,
+  }) async {
+    try {
+      final params = <String, Object>{
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+        ...?parameters,
+      };
+      await _analytics.logEvent(name: name, parameters: params);
+    } catch (e, stackTrace) {
+      _logError('_logEvent[$name]', e, stackTrace);
+    }
+  }
+
+  /// Logs an error using dart:developer for better debugging.
+  void _logError(String context, Object error, [StackTrace? stackTrace]) {
+    if (kDebugMode) {
+      developer.log(
+        'Analytics Error - $context: $error',
+        name: 'AnalyticsService',
+        error: error,
+        stackTrace: stackTrace,
+        level: 900, // Warning level
+      );
+    }
+  }
+
+  // ============================================================
   // User Engagement Analytics
+  // ============================================================
+
+  /// Tracks when the portfolio page is opened.
   Future<void> trackPageOpen() async {
-    try {
-      await _analytics.logEvent(
-        name: 'portfolio_page_open',
-        parameters: {
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackPageOpen: $e');
-      }
-    }
+    await _logEvent('portfolio_page_open');
   }
 
+  /// Tracks scroll depth milestones.
   Future<void> trackScrollDepth(double scrollPercentage, String section) async {
-    try {
-      await _analytics.logEvent(
-        name: 'scroll_depth',
-        parameters: {
-          'scroll_percentage': scrollPercentage.round(),
-          'section': section,
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackScrollDepth: $e');
-      }
-    }
+    await _logEvent(
+      'scroll_depth',
+      parameters: {
+        'scroll_percentage': scrollPercentage.round(),
+        'section': section,
+      },
+    );
   }
 
+  /// Tracks session start (custom event, not reserved).
   Future<void> trackSessionStart() async {
-    try {
-      await _analytics.logEvent(
-        name: 'session_start',
-        parameters: {
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackSessionStart: $e');
-      }
-    }
+    await _logEvent('portfolio_session_start');
   }
 
+  /// Tracks session end with duration.
   Future<void> trackSessionEnd(int durationSeconds) async {
-    try {
-      await _analytics.logEvent(
-        name: 'session_end',
-        parameters: {
-          'session_duration': durationSeconds,
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackSessionEnd: $e');
-      }
-    }
+    await _logEvent(
+      'portfolio_session_end',
+      parameters: {'session_duration': durationSeconds},
+    );
   }
 
+  // ============================================================
   // Conversion & Contact Analytics
+  // ============================================================
+
+  /// Tracks resume download clicks.
   Future<void> trackResumeDownload() async {
-    try {
-      await _analytics.logEvent(
-        name: 'resume_download',
-        parameters: {
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackResumeDownload: $e');
-      }
-    }
+    await _logEvent('resume_download');
   }
 
+  /// Tracks email contact clicks.
   Future<void> trackEmailClick() async {
-    try {
-      await _analytics.logEvent(
-        name: 'email_click',
-        parameters: {
-          'contact_method': 'email',
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackEmailClick: $e');
-      }
-    }
+    await _logEvent(
+      'email_click',
+      parameters: {'contact_method': 'email'},
+    );
   }
 
+  /// Tracks social media link clicks.
   Future<void> trackSocialMediaClick(String platform) async {
-    try {
-      await _analytics.logEvent(
-        name: 'social_media_click',
-        parameters: {
-          'platform': platform,
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackSocialMediaClick: $e');
-      }
-    }
+    await _logEvent(
+      'social_media_click',
+      parameters: {'platform': platform},
+    );
   }
 
+  // ============================================================
   // Technical & Performance Analytics
+  // ============================================================
+
+  /// Tracks theme changes (light/dark).
   Future<void> trackThemeChange(String theme) async {
-    try {
-      await _analytics.logEvent(
-        name: 'theme_change',
-        parameters: {
-          'theme': theme,
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackThemeChange: $e');
-      }
-    }
+    await _logEvent(
+      'theme_change',
+      parameters: {'theme': theme},
+    );
   }
 
+  /// Tracks device and platform info.
   Future<void> trackDeviceInfo(String deviceType, String platform) async {
-    try {
-      await _analytics.logEvent(
-        name: 'device_info',
-        parameters: {
-          'device_type': deviceType,
-          'platform': platform,
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackDeviceInfo: $e');
-      }
-    }
+    await _logEvent(
+      'device_info',
+      parameters: {
+        'device_type': deviceType,
+        'platform': platform,
+      },
+    );
   }
 
-  // Section viewing analytics
+  // ============================================================
+  // Navigation Analytics
+  // ============================================================
+
+  /// Tracks section navigation.
   Future<void> trackSectionView(String sectionName) async {
-    try {
-      await _analytics.logEvent(
-        name: 'section_view',
-        parameters: {
-          'section_name': sectionName,
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackSectionView: $e');
-      }
-    }
+    await _logEvent(
+      'section_view',
+      parameters: {'section_name': sectionName},
+    );
   }
 
-  // Project viewing analytics
+  /// Tracks project detail views.
   Future<void> trackProjectView(String projectName) async {
-    try {
-      await _analytics.logEvent(
-        name: 'project_view',
-        parameters: {
-          'project_name': projectName,
-          'timestamp': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - trackProjectView: $e');
-      }
-    }
+    await _logEvent(
+      'project_view',
+      parameters: {'project_name': projectName},
+    );
   }
 
-  // Set user properties
+  // ============================================================
+  // User Properties
+  // ============================================================
+
+  /// Sets a user property for segmentation.
   Future<void> setUserProperty(String name, String value) async {
     try {
       await _analytics.setUserProperty(name: name, value: value);
-    } catch (e) {
-      if (kDebugMode) {
-        print('Analytics Error - setUserProperty: $e');
-      }
+    } catch (e, stackTrace) {
+      _logError('setUserProperty[$name]', e, stackTrace);
     }
   }
 }
