@@ -14,6 +14,10 @@ class DesignConstants {
   static const double paddingLargeHorizontal = 120;
   static const double paddingSmallHorizontal = 40;
 
+  // Section gaps (spacing between major sections)
+  static const double sectionGapLarge = 40;
+  static const double sectionGapSmall = 24;
+
   // Animation durations (in milliseconds)
   static const int animationFast = 200;
   static const int animationNormal = 300;

@@ -5,6 +5,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/services/analytics_service.dart';
 import 'package:portfolio/utils/url_launcher_service.dart';
@@ -168,6 +169,12 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isLargeScreen = screenWidth > DesignConstants.tabletBreakpoint;
+    final sectionGap = isLargeScreen
+        ? DesignConstants.sectionGapLarge
+        : DesignConstants.sectionGapSmall;
+
     return Scaffold(
       appBar: CustomAppBar(
         onAboutPressed: () {
@@ -191,9 +198,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  constraints: const BoxConstraints(maxWidth: 1200), // Increased max width for more spacious layout
+                  constraints: const BoxConstraints(maxWidth: DesignConstants.maxContentWidth),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // Hero Section
                       HeroSection(
@@ -202,7 +209,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           UrlLauncherService.launch('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH');
                         },
                       ),
-                      const SizedBox(height: 60), // Spacing between sections
+                      SizedBox(height: sectionGap),
 
                       // What I do Section
                       WhatIDoSection(key: _aboutKey),
@@ -221,14 +228,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                       ),
 
                       // Let's Work Together Section (Contact)
-                      SectionHeader(key: _contactKey, title: ""), // Renamed for consistency
+                      SectionHeader(key: _contactKey, title: ""),
                       LetsWorkTogetherSection(
                         onGetInTouchPressed: () {
                           _analytics.trackEmailClick();
                           UrlLauncherService.launchEmail(PortfolioData.email);
                         },
                       ),
-                      const SizedBox(height: 40),
+                      SizedBox(height: sectionGap),
                     ],
                   ),
                 ),
@@ -237,12 +244,12 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           // Sticky Footer
           Container(
-            padding: const EdgeInsets.all(24.0),
+            padding: EdgeInsets.all(isLargeScreen ? 24.0 : 16.0),
             child: Center(
               child: Text(
                 "© ${DateTime.now().year} Dimas Arya Murdiyan. All rights reserved.",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: isLargeScreen ? 14 : 12,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
