@@ -8,6 +8,7 @@ import 'package:portfolio/widgets/experience_section.dart';
 import 'package:portfolio/widgets/hero_section.dart';
 import 'package:portfolio/widgets/lets_work_together_section.dart';
 import 'package:portfolio/widgets/section_header.dart';
+import 'package:portfolio/widgets/project_section.dart';
 import 'package:portfolio/widgets/tech_i_work_with_section.dart';
 import 'package:portfolio/widgets/what_i_do_section.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -120,10 +121,11 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   String _getCurrentSection(double scrollPercentage) {
-    if (scrollPercentage < 20) return 'hero';
-    if (scrollPercentage < 40) return 'about';
-    if (scrollPercentage < 60) return 'tech_stack';
-    if (scrollPercentage < 80) return 'experience';
+    if (scrollPercentage < 15) return 'hero';
+    if (scrollPercentage < 30) return 'about';
+    if (scrollPercentage < 45) return 'tech_stack';
+    if (scrollPercentage < 60) return 'experience';
+    if (scrollPercentage < 80) return 'projects';
     return 'contact';
   }
 
@@ -193,6 +195,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                       // Experience Section
                       ExperienceSection(key: _experienceKey),
 
+                      // Projects Section
+                      ProjectSection(
+                        onProjectTap: (projectName) {
+                          _analytics.trackProjectView(projectName);
+                        },
+                      ),
 
                       // Let's Work Together Section (Contact)
                       SectionHeader(key: _contactKey, title: ""), // Renamed for consistency
