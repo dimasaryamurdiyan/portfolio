@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/utils/url_launcher_service.dart';
 import 'package:portfolio/widgets/image_carousel.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProjectDetailDialog extends StatelessWidget {
   final Map<String, dynamic> project;
@@ -16,13 +16,6 @@ class ProjectDetailDialog extends StatelessWidget {
     }
     final hex = hexColor.replaceAll('#', '');
     return Color(int.parse('FF$hex', radix: 16));
-  }
-
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
   }
 
   @override
@@ -279,14 +272,14 @@ class ProjectDetailDialog extends StatelessWidget {
                                       context,
                                       icon: Icons.shop_rounded,
                                       label: "Play Store",
-                                      onTap: () => _launchUrl(playStoreUrl),
+                                      onTap: () => UrlLauncherService.launch(playStoreUrl),
                                     ),
                                   if (githubUrl.isNotEmpty)
                                     _buildLinkButton(
                                       context,
                                       icon: Icons.code_rounded,
                                       label: "GitHub",
-                                      onTap: () => _launchUrl(githubUrl),
+                                      onTap: () => UrlLauncherService.launch(githubUrl),
                                       isPrimary: false,
                                     ),
                                 ],

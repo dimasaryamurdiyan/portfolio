@@ -11,7 +11,7 @@ import 'package:portfolio/widgets/section_header.dart';
 import 'package:portfolio/widgets/project_section.dart';
 import 'package:portfolio/widgets/tech_i_work_with_section.dart';
 import 'package:portfolio/widgets/what_i_do_section.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio/utils/url_launcher_service.dart';
 import 'dart:io' show Platform;
 import 'dart:async' show unawaited;
 
@@ -139,15 +139,6 @@ class _HomePageState extends ConsumerState<HomePage> {
     super.dispose();
   }
 
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      if (kDebugMode) {
-        print('Could not launch $url');
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,7 +172,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       HeroSection(
                         onDownloadResumePressed: () {
                           _analytics.trackResumeDownload();
-                          _launchUrl('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH');
+                          UrlLauncherService.launch('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH');
                         },
                       ),
                       const SizedBox(height: 60), // Spacing between sections
@@ -207,7 +198,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       LetsWorkTogetherSection(
                         onGetInTouchPressed: () {
                           _analytics.trackEmailClick();
-                          _launchUrl('mailto:${PortfolioData.email}');
+                          UrlLauncherService.launchEmail(PortfolioData.email);
                         },
                       ),
                       const SizedBox(height: 40),

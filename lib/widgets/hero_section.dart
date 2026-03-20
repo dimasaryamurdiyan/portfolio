@@ -1,10 +1,9 @@
 // The main introductory section of the portfolio.
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/services/analytics_service.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio/utils/url_launcher_service.dart';
 
 class HeroSection extends StatefulWidget {
   final VoidCallback onDownloadResumePressed;
@@ -63,15 +62,6 @@ class _HeroSectionState extends State<HeroSection>
     _pulseController.dispose();
     _dotController.dispose();
     super.dispose();
-  }
-
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      if (kDebugMode) {
-        print('Could not launch $url');
-      }
-    }
   }
 
   void _scrollDown() {
@@ -162,7 +152,7 @@ class _HeroSectionState extends State<HeroSection>
                         ),
                         onPressed: () {
                           _analytics.trackSocialMediaClick('github');
-                          _launchUrl(PortfolioData.githubUrl);
+                          UrlLauncherService.launch(PortfolioData.githubUrl);
                         },
                         tooltip: 'GitHub',
                       ),
@@ -188,7 +178,7 @@ class _HeroSectionState extends State<HeroSection>
                         ),
                         onPressed: () {
                           _analytics.trackSocialMediaClick('linkedin');
-                          _launchUrl(PortfolioData.linkedinUrl);
+                          UrlLauncherService.launch(PortfolioData.linkedinUrl);
                         },
                         tooltip: 'LinkedIn',
                       ),
