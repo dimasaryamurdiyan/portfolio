@@ -61,6 +61,7 @@ class ProjectDetailDialog extends StatelessWidget {
                     showArrows: true,
                     showIndicators: true,
                     imageFit: BoxFit.contain,
+                    enableZoom: true,
                     placeholderColor: theme.brightness == Brightness.dark
                         ? theme.colorScheme.surfaceContainerHighest
                         : cardColor.withValues(alpha: 0.5),

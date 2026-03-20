@@ -8,6 +8,7 @@ class ImageCarousel extends StatefulWidget {
   final bool showIndicators;
   final Color? placeholderColor;
   final BoxFit imageFit;
+  final bool enableZoom;
 
   const ImageCarousel({
     super.key,
@@ -18,6 +19,7 @@ class ImageCarousel extends StatefulWidget {
     this.showIndicators = true,
     this.placeholderColor,
     this.imageFit = BoxFit.cover,
+    this.enableZoom = false,
   });
 
   @override
@@ -26,6 +28,7 @@ class ImageCarousel extends StatefulWidget {
 
 class _ImageCarouselState extends State<ImageCarousel> {
   late PageController _pageController;
+  late TransformationController _transformationController;
   int _currentIndex = 0;
   bool _isHoveringLeft = false;
   bool _isHoveringRight = false;
@@ -34,12 +37,19 @@ class _ImageCarouselState extends State<ImageCarousel> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    _transformationController = TransformationController();
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _transformationController.dispose();
     super.dispose();
+  }
+
+  /// Reset zoom when changing pages
+  void _resetZoom() {
+    _transformationController.value = Matrix4.identity();
   }
 
   void _goToPage(int index) {
@@ -79,6 +89,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
               PageView.builder(
                 controller: _pageController,
                 onPageChanged: (index) {
+                  _resetZoom();
                   setState(() => _currentIndex = index);
                 },
                 itemCount: widget.images.length,
@@ -257,21 +268,30 @@ class _ImageCarouselState extends State<ImageCarousel> {
   }
 
   Widget _buildImage(String imagePath, ThemeData theme) {
+    final image = Image.asset(
+      imagePath,
+      fit: widget.imageFit,
+      width: double.infinity,
+      height: double.infinity,
+      // Limit decoded image size for better memory performance
+      cacheWidth: 800,
+      errorBuilder: (context, error, stackTrace) {
+        return _buildPlaceholder(theme);
+      },
+    );
+
     return Container(
       width: double.infinity,
       height: double.infinity,
       color: widget.placeholderColor ?? theme.colorScheme.surfaceContainerHighest,
-      child: Image.asset(
-        imagePath,
-        fit: widget.imageFit,
-        width: double.infinity,
-        height: double.infinity,
-        // Limit decoded image size for better memory performance
-        cacheWidth: 800,
-        errorBuilder: (context, error, stackTrace) {
-          return _buildPlaceholder(theme);
-        },
-      ),
+      child: widget.enableZoom
+          ? InteractiveViewer(
+              transformationController: _transformationController,
+              minScale: 1.0,
+              maxScale: 4.0,
+              child: image,
+            )
+          : image,
     );
   }
 
