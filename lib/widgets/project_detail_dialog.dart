@@ -116,6 +116,8 @@ class ProjectDetailDialog extends StatelessWidget {
                                 child: Image.asset(
                                   project["logo_path"] as String,
                                   fit: BoxFit.contain,
+                                  cacheWidth: 128, // 2x the display size for retina
+                                  cacheHeight: 128,
                                   errorBuilder: (context, error, stackTrace) {
                                     return _buildFallbackLogo(theme);
                                   },
