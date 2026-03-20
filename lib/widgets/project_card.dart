@@ -195,11 +195,15 @@ class _ProjectCardState extends State<ProjectCard> {
                         child: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primary,
+                            color: theme.brightness == Brightness.dark
+                                ? theme.colorScheme.surfaceContainerHighest
+                                : theme.colorScheme.primary,
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: [
                               BoxShadow(
-                                color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                                color: theme.brightness == Brightness.dark
+                                    ? theme.colorScheme.shadow.withValues(alpha: 0.3)
+                                    : theme.colorScheme.primary.withValues(alpha: 0.3),
                                 blurRadius: 8,
                                 offset: const Offset(0, 2),
                               ),
@@ -208,7 +212,9 @@ class _ProjectCardState extends State<ProjectCard> {
                           child: Icon(
                             Icons.arrow_outward_rounded,
                             size: 18,
-                            color: theme.colorScheme.onPrimary,
+                            color: theme.brightness == Brightness.dark
+                                ? theme.colorScheme.onSurface
+                                : theme.colorScheme.onPrimary,
                           ),
                         ),
                       ),
