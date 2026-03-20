@@ -163,38 +163,6 @@ class PortfolioData {
 
   static final List<Map<String, dynamic>> projects = [
     {
-      "title": "CollabNext",
-      "description": "Collaborate, Create, Present — All in One platform for mobile and desktop",
-      "detailed_description":
-          "CollabNext is a next-generation collaboration platform that streamlines collaboration, boosts "
-          "creativity, and enables instant presentations. Work together live, leverage AI to supercharge "
-          "your workflow, and move smoothly between whiteboard, documents, and slides — all in one app.\n\n"
-          "Built with Flutter for seamless cross-platform experience on mobile and desktop devices.\n\n"
-          "Key contributions:\n"
-          "• Developed cross-platform Flutter application for mobile and desktop\n"
-          "• Implemented state management using Bloc pattern for scalable architecture\n"
-          "• Built real-time collaboration features for live teamwork\n"
-          "• Integrated AI-powered tools to enhance productivity and workflow\n"
-          "• Created unified experience for whiteboard, documents, and slides\n"
-          "• Ensured consistent UX across Android, iOS, Windows, macOS, and Linux",
-      "tech_stacks": [
-        "Flutter",
-        "Dart",
-        "Bloc",
-        "Clean Architecture",
-        "WebSocket",
-        "AI Integration"
-      ],
-      "logo_path": "assets/projects/collabnext.webp",
-      "images": <String>[
-        "assets/projects/collabnext_1.webp",
-      ],
-      "play_store_url": "",
-      "github_url": "",
-      "web_url": "https://collab.imago.buzz/home",
-      "card_color": "#E8F4F8",
-    },
-      {
       "title": "Collab",
       "description": "Drawing collaboration app for Interactive Flat Panel (smartboard) devices",
       "detailed_description":
@@ -259,6 +227,43 @@ class PortfolioData {
       "github_url": "",
       "web_url": "https://olive-oyster-501406.hostingersite.com/proctor-application/",
       "card_color": "#EEE7E1",
+    },
+    {
+      "title": "Collab Next-Gen",
+      "description": "Collaborate, Create, Present — All in One platform for mobile, smartboard and desktop",
+      "detailed_description":
+          "CollabNext is a next-generation collaboration platform that streamlines collaboration, boosts "
+          "creativity, and enables instant presentations. Work together live, leverage AI to supercharge "
+          "your workflow, and move smoothly between whiteboard, documents, and slides — all in one app.\n\n"
+          "Built with Flutter for seamless cross-platform experience on mobile and desktop devices.\n\n"
+          "Key contributions:\n"
+          "• Developed cross-platform Flutter application for mobile, smartboard and desktop\n"
+          "• Implemented state management using Bloc pattern for scalable architecture\n"
+          "• Built real-time collaboration features for live teamwork\n"
+          "• Integrated AI-powered tools to enhance productivity and workflow\n"
+          "• Created unified experience for whiteboard, documents, and slides\n"
+          "• Ensured consistent UX across Android, iOS, Windows, macOS, and Linux",
+      "tech_stacks": [
+        "Flutter",
+        "Dart",
+        "Bloc",
+        "Clean Architecture",
+        "WebSocket",
+        "AI Integration"
+      ],
+      "logo_path": "assets/projects/collab.webp",
+      "images": <String>[
+        "assets/projects/collabnext_1.webp",
+        "assets/projects/collabnext_2.webp",
+        "assets/projects/collabnext_3.webp",
+        "assets/projects/collabnext_4.webp",
+        "assets/projects/collabnext_5.webp",
+        "assets/projects/collabnext_6.webp"
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "web_url": "https://collab.imago.buzz/home",
+      "card_color": "#E8F4F8",
     },
     {
       "title": "KipasKipas",
