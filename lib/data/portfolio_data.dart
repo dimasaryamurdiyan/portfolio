@@ -187,7 +187,7 @@ class PortfolioData {
       ],
       "logo_path": "assets/imago.png",
       "images": <String>[
-        "assets/projects/collab_1.png",
+        "assets/projects/collab_1.webp",
       ],
       "play_store_url": "",
       "github_url": "",
@@ -220,7 +220,7 @@ class PortfolioData {
       ],
       "logo_path": "assets/imago.png",
       "images": <String>[
-        "assets/projects/launcher_1.png",
+        "assets/projects/launcher_1.webp",
       ],
       "play_store_url": "",
       "github_url": "",
@@ -242,8 +242,8 @@ class PortfolioData {
       "tech_stacks": ["Kotlin", "MVVM", "Koin", "Coroutines", "CI/CD", "Fastlane", "Modularization", "Dependency Injection"],
       "logo_path": "assets/kipaskipas.png",
       "images": <String>[
-        "assets/projects/kipaskipas_1.png",
-        "assets/projects/kipaskipas_2.png",
+        "assets/projects/kipaskipas_1.webp",
+        "assets/projects/kipaskipas_2.webp",
       ],
       "play_store_url": "https://play.google.com/store/apps/details?id=com.koanba.kipaskipas",
       "github_url": "",
@@ -265,8 +265,8 @@ class PortfolioData {
       "tech_stacks": ["Kotlin", "MVVM", "RxJava", "Hilt", "Firebase", "Mockito", "EventBus", "Android Jetpack"],
       "logo_path": "assets/binar.webp",
       "images": <String>[
-        "assets/projects/binar_1.png",
-        "assets/projects/binar_2.png",
+        "assets/projects/binaracademy_1.webp",
+        "assets/projects/binaracademy_2.webp",
       ],
       "play_store_url": "https://play.google.com/store/apps/details?id=com.binaracedemy.app",
       "github_url": "",
@@ -307,7 +307,8 @@ class PortfolioData {
       "tech_stacks": ["Java", "Firebase", "MVVM", "Real-time Chat"],
       "logo_path": "assets/kiosrakyat.png",
       "images": <String>[
-        "assets/projects/kiosrakyat_1.png",
+        "assets/projects/kiosrakyat_1.webp",
+        "assets/projects/kiosrakyat_2.webp",
       ],
       "play_store_url": "",
       "github_url": "",
