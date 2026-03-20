@@ -68,13 +68,14 @@ class ProjectDetailDialog extends StatelessWidget {
                 children: [
                   ImageCarousel(
                     images: images,
-                    height: isLargeScreen ? 320 : 220,
+                    height: isLargeScreen ? 350 : 260,
                     borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
                     showArrows: true,
                     showIndicators: true,
+                    imageFit: BoxFit.contain,
                     placeholderColor: theme.brightness == Brightness.dark
                         ? theme.colorScheme.surfaceContainerHighest
-                        : cardColor,
+                        : cardColor.withValues(alpha: 0.5),
                   ),
 
                   // Close Button

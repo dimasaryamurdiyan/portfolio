@@ -7,6 +7,7 @@ class ImageCarousel extends StatefulWidget {
   final bool showArrows;
   final bool showIndicators;
   final Color? placeholderColor;
+  final BoxFit imageFit;
 
   const ImageCarousel({
     super.key,
@@ -16,6 +17,7 @@ class ImageCarousel extends StatefulWidget {
     this.showArrows = true,
     this.showIndicators = true,
     this.placeholderColor,
+    this.imageFit = BoxFit.cover,
   });
 
   @override
@@ -241,13 +243,19 @@ class _ImageCarouselState extends State<ImageCarousel> {
   }
 
   Widget _buildImage(String imagePath, ThemeData theme) {
-    return Image.asset(
-      imagePath,
-      fit: BoxFit.cover,
+    return Container(
       width: double.infinity,
-      errorBuilder: (context, error, stackTrace) {
-        return _buildPlaceholder(theme);
-      },
+      height: double.infinity,
+      color: widget.placeholderColor ?? theme.colorScheme.surfaceContainerHighest,
+      child: Image.asset(
+        imagePath,
+        fit: widget.imageFit,
+        width: double.infinity,
+        height: double.infinity,
+        errorBuilder: (context, error, stackTrace) {
+          return _buildPlaceholder(theme);
+        },
+      ),
     );
   }
 
