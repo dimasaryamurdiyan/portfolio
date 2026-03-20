@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/design_constants.dart';
 
 class LetsWorkTogetherSection extends StatelessWidget {
   final VoidCallback onGetInTouchPressed;
@@ -7,10 +8,10 @@ class LetsWorkTogetherSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 120.0, horizontal: 24),
+      padding: EdgeInsets.symmetric(vertical: DesignConstants.paddingLargeVertical, horizontal: 24),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

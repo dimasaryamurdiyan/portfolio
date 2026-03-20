@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/utils/color_utils.dart';
 import 'package:portfolio/utils/url_launcher_service.dart';
 import 'package:portfolio/widgets/image_carousel.dart';
@@ -15,7 +16,7 @@ class ProjectDetailDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final screenSize = MediaQuery.of(context).size;
-    final isLargeScreen = screenSize.width > 800;
+    final isLargeScreen = screenSize.width > DesignConstants.tabletBreakpoint;
     final cardColor = ColorUtils.parseHex(project["card_color"] as String?);
     final techStacks = (project["tech_stacks"] as List<dynamic>?) ?? [];
     final images = (project["images"] as List<String>?) ?? [];

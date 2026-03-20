@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/widgets/experience_item.dart';
 
@@ -7,13 +8,13 @@ class ExperienceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
     final theme = Theme.of(context);
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: isLargeScreen ? 120 : 80,
-        horizontal: isLargeScreen ? 120 : 40,
+        vertical: isLargeScreen ? DesignConstants.paddingLargeVertical : DesignConstants.paddingSmallVertical,
+        horizontal: isLargeScreen ? DesignConstants.paddingLargeHorizontal : DesignConstants.paddingSmallHorizontal,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

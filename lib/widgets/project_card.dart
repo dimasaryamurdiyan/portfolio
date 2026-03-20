@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/utils/color_utils.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -21,7 +22,7 @@ class _ProjectCardState extends State<ProjectCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
     final cardColor = ColorUtils.parseHex(widget.project["card_color"] as String?);
     final techStacks = (widget.project["tech_stacks"] as List<dynamic>?) ?? [];
     final images = (widget.project["images"] as List<String>?) ?? [];

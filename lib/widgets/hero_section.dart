@@ -1,6 +1,7 @@
 // The main introductory section of the portfolio.
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/services/analytics_service.dart';
 import 'package:portfolio/utils/url_launcher_service.dart';
@@ -75,12 +76,12 @@ class _HeroSectionState extends State<HeroSection>
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isLargeScreen ? 120 : 80,
-        horizontal: isLargeScreen ? 120 : 40,
+        vertical: isLargeScreen ? DesignConstants.paddingLargeVertical : DesignConstants.paddingSmallVertical,
+        horizontal: isLargeScreen ? DesignConstants.paddingLargeHorizontal : DesignConstants.paddingSmallHorizontal,
       ),
       alignment: Alignment.center,
       child: Row(
