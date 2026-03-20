@@ -1,19 +1,22 @@
+import 'dart:async' show Timer, unawaited;
+import 'dart:developer' as developer;
+import 'dart:io' show Platform;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/services/analytics_service.dart';
+import 'package:portfolio/utils/url_launcher_service.dart';
 import 'package:portfolio/widgets/custom_app_bar.dart';
 import 'package:portfolio/widgets/experience_section.dart';
 import 'package:portfolio/widgets/hero_section.dart';
 import 'package:portfolio/widgets/lets_work_together_section.dart';
-import 'package:portfolio/widgets/section_header.dart';
 import 'package:portfolio/widgets/project_section.dart';
+import 'package:portfolio/widgets/section_header.dart';
 import 'package:portfolio/widgets/tech_i_work_with_section.dart';
 import 'package:portfolio/widgets/what_i_do_section.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'dart:io' show Platform;
-import 'dart:async' show unawaited;
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -32,6 +35,10 @@ class _HomePageState extends ConsumerState<HomePage> {
   late DateTime _sessionStartTime;
   double _lastScrollPosition = 0;
   bool _hasTrackedInitialPageView = false;
+
+  // Throttling for scroll listener (100ms minimum between checks)
+  Timer? _scrollThrottleTimer;
+  static const _scrollThrottleDuration = Duration(milliseconds: 100);
 
   void _scrollToSection(GlobalKey key) {
     if (key.currentContext != null) {
@@ -53,7 +60,11 @@ class _HomePageState extends ConsumerState<HomePage> {
     // Handle async setup properly
     _setupAnalytics().catchError((error) {
       if (kDebugMode) {
-        print('Analytics setup error: $error');
+        developer.log(
+          'Analytics setup error: $error',
+          name: 'HomePage',
+          level: 900,
+        );
       }
     });
   }
@@ -97,27 +108,41 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   void _setupScrollListener() {
-    _scrollController.addListener(() {
-      final currentPosition = _scrollController.position.pixels;
-      final maxScrollExtent = _scrollController.position.maxScrollExtent;
-      
-      // Page view is now tracked in initState, no need to track here
-      
-      // Track scroll depth every 25% increment
-      final scrollPercentage = (currentPosition / maxScrollExtent) * 100;
-      final lastScrollPercentage = (_lastScrollPosition / maxScrollExtent) * 100;
-      
-      // Track milestone scroll depths (25%, 50%, 75%, 100%)
-      final milestones = [25.0, 50.0, 75.0, 100.0];
-      for (final milestone in milestones) {
-        if (lastScrollPercentage < milestone && scrollPercentage >= milestone) {
-          String section = _getCurrentSection(scrollPercentage);
-          _analytics.trackScrollDepth(milestone, section);
-        }
+    _scrollController.addListener(_throttledScrollHandler);
+  }
+
+  /// Throttled scroll handler to prevent excessive processing.
+  void _throttledScrollHandler() {
+    // Skip if timer is still active (throttling)
+    if (_scrollThrottleTimer?.isActive ?? false) return;
+
+    // Set up throttle timer
+    _scrollThrottleTimer = Timer(_scrollThrottleDuration, () {});
+
+    // Process scroll
+    _processScrollPosition();
+  }
+
+  void _processScrollPosition() {
+    final currentPosition = _scrollController.position.pixels;
+    final maxScrollExtent = _scrollController.position.maxScrollExtent;
+
+    // Avoid division by zero
+    if (maxScrollExtent <= 0) return;
+
+    final scrollPercentage = (currentPosition / maxScrollExtent) * 100;
+    final lastScrollPercentage = (_lastScrollPosition / maxScrollExtent) * 100;
+
+    // Track milestone scroll depths (25%, 50%, 75%, 100%)
+    const milestones = [25.0, 50.0, 75.0, 100.0];
+    for (final milestone in milestones) {
+      if (lastScrollPercentage < milestone && scrollPercentage >= milestone) {
+        final section = _getCurrentSection(scrollPercentage);
+        _analytics.trackScrollDepth(milestone, section);
       }
-      
-      _lastScrollPosition = currentPosition;
-    });
+    }
+
+    _lastScrollPosition = currentPosition;
   }
 
   String _getCurrentSection(double scrollPercentage) {
@@ -131,25 +156,25 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void dispose() {
+    // Cancel throttle timer
+    _scrollThrottleTimer?.cancel();
+
     // Track session end - use unawaited to explicitly indicate we don't wait for completion
     final sessionDuration = DateTime.now().difference(_sessionStartTime).inSeconds;
     unawaited(_analytics.trackSessionEnd(sessionDuration));
-    
+
     _scrollController.dispose();
     super.dispose();
   }
 
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      if (kDebugMode) {
-        print('Could not launch $url');
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isLargeScreen = screenWidth > DesignConstants.tabletBreakpoint;
+    final sectionGap = isLargeScreen
+        ? DesignConstants.sectionGapLarge
+        : DesignConstants.sectionGapSmall;
+
     return Scaffold(
       appBar: CustomAppBar(
         onAboutPressed: () {
@@ -173,24 +198,24 @@ class _HomePageState extends ConsumerState<HomePage> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  constraints: const BoxConstraints(maxWidth: 1200), // Increased max width for more spacious layout
+                  constraints: const BoxConstraints(maxWidth: DesignConstants.maxContentWidth),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // Hero Section
                       HeroSection(
                         onDownloadResumePressed: () {
                           _analytics.trackResumeDownload();
-                          _launchUrl('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH');
+                          UrlLauncherService.launch('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH');
                         },
                       ),
-                      const SizedBox(height: 60), // Spacing between sections
+                      SizedBox(height: sectionGap),
 
                       // What I do Section
                       WhatIDoSection(key: _aboutKey),
 
                       // Tech I Work With Section
-                      TechIWorkWithSection(),
+                      const TechIWorkWithSection(),
 
                       // Experience Section
                       ExperienceSection(key: _experienceKey),
@@ -203,14 +228,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                       ),
 
                       // Let's Work Together Section (Contact)
-                      SectionHeader(key: _contactKey, title: ""), // Renamed for consistency
+                      SectionHeader(key: _contactKey, title: ""),
                       LetsWorkTogetherSection(
                         onGetInTouchPressed: () {
                           _analytics.trackEmailClick();
-                          _launchUrl('mailto:${PortfolioData.email}');
+                          UrlLauncherService.launchEmail(PortfolioData.email);
                         },
                       ),
-                      const SizedBox(height: 40),
+                      SizedBox(height: sectionGap),
                     ],
                   ),
                 ),
@@ -219,12 +244,12 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           // Sticky Footer
           Container(
-            padding: const EdgeInsets.all(24.0),
+            padding: EdgeInsets.all(isLargeScreen ? 24.0 : 16.0),
             child: Center(
               child: Text(
                 "© ${DateTime.now().year} Dimas Arya Murdiyan. All rights reserved.",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: isLargeScreen ? 14 : 12,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),

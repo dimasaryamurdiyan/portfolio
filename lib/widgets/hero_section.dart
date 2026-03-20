@@ -1,10 +1,10 @@
 // The main introductory section of the portfolio.
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/services/analytics_service.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio/utils/url_launcher_service.dart';
 
 class HeroSection extends StatefulWidget {
   final VoidCallback onDownloadResumePressed;
@@ -65,15 +65,6 @@ class _HeroSectionState extends State<HeroSection>
     super.dispose();
   }
 
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      if (kDebugMode) {
-        print('Could not launch $url');
-      }
-    }
-  }
-
   void _scrollDown() {
     // Scroll down to the next section
     Scrollable.ensureVisible(
@@ -85,12 +76,12 @@ class _HeroSectionState extends State<HeroSection>
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isLargeScreen ? 120 : 80,
-        horizontal: isLargeScreen ? 120 : 40,
+        vertical: isLargeScreen ? DesignConstants.paddingLargeVertical : DesignConstants.paddingSmallVertical,
+        horizontal: isLargeScreen ? DesignConstants.paddingLargeHorizontal : DesignConstants.paddingSmallHorizontal,
       ),
       alignment: Alignment.center,
       child: Row(
@@ -162,7 +153,7 @@ class _HeroSectionState extends State<HeroSection>
                         ),
                         onPressed: () {
                           _analytics.trackSocialMediaClick('github');
-                          _launchUrl(PortfolioData.githubUrl);
+                          UrlLauncherService.launch(PortfolioData.githubUrl);
                         },
                         tooltip: 'GitHub',
                       ),
@@ -188,7 +179,7 @@ class _HeroSectionState extends State<HeroSection>
                         ),
                         onPressed: () {
                           _analytics.trackSocialMediaClick('linkedin');
-                          _launchUrl(PortfolioData.linkedinUrl);
+                          UrlLauncherService.launch(PortfolioData.linkedinUrl);
                         },
                         tooltip: 'LinkedIn',
                       ),
@@ -226,14 +217,17 @@ class _HeroSectionState extends State<HeroSection>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AnimatedBuilder(
-                    animation: _pulseAnimation,
-                    builder: (context, child) {
-                      return Transform.scale(
-                        scale: _pulseAnimation.value,
-                        child: GestureDetector(
-                          onTap: _scrollDown,
-                          child: Container(
+                  Semantics(
+                    button: true,
+                    label: 'Scroll down to see more content',
+                    child: AnimatedBuilder(
+                      animation: _pulseAnimation,
+                      builder: (context, child) {
+                        return Transform.scale(
+                          scale: _pulseAnimation.value,
+                          child: GestureDetector(
+                            onTap: _scrollDown,
+                            child: Container(
                             width: 40,
                             height: 80,
                             decoration: BoxDecoration(
@@ -266,10 +260,11 @@ class _HeroSectionState extends State<HeroSection>
                             ),
                           ),
                         ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-const SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                     "scroll down",
                     style: TextStyle(

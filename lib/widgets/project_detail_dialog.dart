@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/design_constants.dart';
+import 'package:portfolio/utils/color_utils.dart';
+import 'package:portfolio/utils/url_launcher_service.dart';
 import 'package:portfolio/widgets/image_carousel.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProjectDetailDialog extends StatelessWidget {
   final Map<String, dynamic> project;
@@ -10,31 +12,17 @@ class ProjectDetailDialog extends StatelessWidget {
     required this.project,
   });
 
-  Color _parseColor(String? hexColor) {
-    if (hexColor == null || hexColor.isEmpty) {
-      return Colors.grey.shade100;
-    }
-    final hex = hexColor.replaceAll('#', '');
-    return Color(int.parse('FF$hex', radix: 16));
-  }
-
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final screenSize = MediaQuery.of(context).size;
-    final isLargeScreen = screenSize.width > 800;
-    final cardColor = _parseColor(project["card_color"] as String?);
+    final isLargeScreen = screenSize.width > DesignConstants.tabletBreakpoint;
+    final cardColor = ColorUtils.parseHex(project["card_color"] as String?);
     final techStacks = (project["tech_stacks"] as List<dynamic>?) ?? [];
     final images = (project["images"] as List<String>?) ?? [];
     final playStoreUrl = project["play_store_url"] as String? ?? "";
     final githubUrl = project["github_url"] as String? ?? "";
+    final webUrl = project["web_url"] as String? ?? "";
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -73,6 +61,7 @@ class ProjectDetailDialog extends StatelessWidget {
                     showArrows: true,
                     showIndicators: true,
                     imageFit: BoxFit.contain,
+                    enableZoom: true,
                     placeholderColor: theme.brightness == Brightness.dark
                         ? theme.colorScheme.surfaceContainerHighest
                         : cardColor.withValues(alpha: 0.5),
@@ -130,6 +119,8 @@ class ProjectDetailDialog extends StatelessWidget {
                                 child: Image.asset(
                                   project["logo_path"] as String,
                                   fit: BoxFit.contain,
+                                  cacheWidth: 128, // 2x the display size for retina
+                                  cacheHeight: 128,
                                   errorBuilder: (context, error, stackTrace) {
                                     return _buildFallbackLogo(theme);
                                   },
@@ -222,7 +213,7 @@ class ProjectDetailDialog extends StatelessWidget {
                       ),
 
                       // Links Section
-                      if (playStoreUrl.isNotEmpty || githubUrl.isNotEmpty) ...[
+                      if (playStoreUrl.isNotEmpty || githubUrl.isNotEmpty || webUrl.isNotEmpty) ...[
                         const SizedBox(height: 32),
                         Container(
                           padding: const EdgeInsets.all(20),
@@ -279,14 +270,22 @@ class ProjectDetailDialog extends StatelessWidget {
                                       context,
                                       icon: Icons.shop_rounded,
                                       label: "Play Store",
-                                      onTap: () => _launchUrl(playStoreUrl),
+                                      onTap: () => UrlLauncherService.launch(playStoreUrl),
                                     ),
                                   if (githubUrl.isNotEmpty)
                                     _buildLinkButton(
                                       context,
                                       icon: Icons.code_rounded,
                                       label: "GitHub",
-                                      onTap: () => _launchUrl(githubUrl),
+                                      onTap: () => UrlLauncherService.launch(githubUrl),
+                                      isPrimary: false,
+                                    ),
+                                  if (webUrl.isNotEmpty)
+                                    _buildLinkButton(
+                                      context,
+                                      icon: Icons.language_rounded,
+                                      label: "Website",
+                                      onTap: () => UrlLauncherService.launch(webUrl),
                                       isPrimary: false,
                                     ),
                                 ],

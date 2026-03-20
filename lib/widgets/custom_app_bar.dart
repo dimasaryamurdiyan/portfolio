@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/presentation/providers/theme_provider.dart';
 
@@ -18,7 +19,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
 
     if (isLargeScreen) {
       return AppBar(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/design_constants.dart';
+import 'package:portfolio/utils/color_utils.dart';
 
 class ProjectCard extends StatefulWidget {
   final Map<String, dynamic> project;
@@ -17,29 +19,26 @@ class ProjectCard extends StatefulWidget {
 class _ProjectCardState extends State<ProjectCard> {
   bool _isHovered = false;
 
-  Color _parseColor(String? hexColor) {
-    if (hexColor == null || hexColor.isEmpty) {
-      return Colors.grey.shade100;
-    }
-    final hex = hexColor.replaceAll('#', '');
-    return Color(int.parse('FF$hex', radix: 16));
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
-    final cardColor = _parseColor(widget.project["card_color"] as String?);
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
+    final cardColor = ColorUtils.parseHex(widget.project["card_color"] as String?);
     final techStacks = (widget.project["tech_stacks"] as List<dynamic>?) ?? [];
     final images = (widget.project["images"] as List<String>?) ?? [];
     final hasImages = images.isNotEmpty;
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: AnimatedContainer(
+    final projectTitle = widget.project["title"] as String? ?? "Project";
+
+    return Semantics(
+      button: true,
+      label: 'View details for $projectTitle',
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeInOut,
           transform: Matrix4.identity()
@@ -49,7 +48,9 @@ class _ProjectCardState extends State<ProjectCard> {
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: _isHovered
-                  ? theme.colorScheme.primary.withValues(alpha: 0.5)
+                  ? (theme.brightness == Brightness.dark
+                      ? theme.colorScheme.outline.withValues(alpha: 0.6)
+                      : theme.colorScheme.primary.withValues(alpha: 0.5))
                   : theme.colorScheme.outline.withValues(alpha: 0.1),
               width: _isHovered ? 2 : 1,
             ),
@@ -82,6 +83,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                 images.first,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
+                                // Limit decoded image size for better memory performance
+                                cacheWidth: 600,
                                 errorBuilder: (context, error, stackTrace) {
                                   return _buildImagePlaceholder(theme, cardColor);
                                 },
@@ -137,6 +140,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                   child: Image.asset(
                                     widget.project["logo_path"] as String,
                                     fit: BoxFit.contain,
+                                    cacheWidth: 88, // 2x the display size for retina
+                                    cacheHeight: 88,
                                     errorBuilder: (context, error, stackTrace) {
                                       return _buildFallbackLogo(theme);
                                     },
@@ -190,11 +195,15 @@ class _ProjectCardState extends State<ProjectCard> {
                         child: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primary,
+                            color: theme.brightness == Brightness.dark
+                                ? theme.colorScheme.surfaceContainerHighest
+                                : theme.colorScheme.primary,
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: [
                               BoxShadow(
-                                color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                                color: theme.brightness == Brightness.dark
+                                    ? theme.colorScheme.shadow.withValues(alpha: 0.3)
+                                    : theme.colorScheme.primary.withValues(alpha: 0.3),
                                 blurRadius: 8,
                                 offset: const Offset(0, 2),
                               ),
@@ -203,7 +212,9 @@ class _ProjectCardState extends State<ProjectCard> {
                           child: Icon(
                             Icons.arrow_outward_rounded,
                             size: 18,
-                            color: theme.colorScheme.onPrimary,
+                            color: theme.brightness == Brightness.dark
+                                ? theme.colorScheme.onSurface
+                                : theme.colorScheme.onPrimary,
                           ),
                         ),
                       ),
@@ -281,9 +292,10 @@ class _ProjectCardState extends State<ProjectCard> {
                       ),
                     ],
                   ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

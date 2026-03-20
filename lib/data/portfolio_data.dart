@@ -9,7 +9,7 @@ class PortfolioData {
   static const String linkedinUrl = "https://linkedin.com/in/dimas-arya-murdiyan/"; 
 
   static const String aboutMe =
-      "Android Engineer with over 4 years of experience in developing, improving, and maintaining native Android applications. "
+      "Android Engineer with over 5 years of experience in developing, improving, and maintaining native Android applications. "
       "Proficient in a range of modern technologies including Kotlin, MVVM Architecture, Android Jetpack, Jetpack Compose, Hilt, Koin, RxJava, "
       "Coroutines, Room, CI/CD Fastlane, and Firebase. Proven ability to lead feature development, collaborate with cross-functional "
       "teams, and deliver scalable solutions. Passionate about mobile development and delivering high-quality applications.";
@@ -123,7 +123,10 @@ class PortfolioData {
       "Figma",
       "Git",
       "GitHub Actions",
-      "WebSocket"
+      "WebSocket",
+      "BLoC",
+      "GetX",
+      "Riverpod",
     ],
     "Skills": [
       "Modularization",
@@ -133,7 +136,7 @@ class PortfolioData {
       "Code Review",
       "A/B Testing",
       "Feature Flags",
-      "Clean Arch"
+      "Clean Architecture"
     ],
   };
 
@@ -162,7 +165,7 @@ class PortfolioData {
   ];
 
   static final List<Map<String, dynamic>> projects = [
-      {
+    {
       "title": "Collab",
       "description": "Drawing collaboration app for Interactive Flat Panel (smartboard) devices",
       "detailed_description":
@@ -191,6 +194,7 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "https://collab.imago.us",
       "card_color": "#F4F0EC",
     },
     {
@@ -224,7 +228,45 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "https://olive-oyster-501406.hostingersite.com/proctor-application/",
       "card_color": "#EEE7E1",
+    },
+    {
+      "title": "Collab Next-Gen",
+      "description": "Collaborate, Create, Present — All in One platform for mobile, smartboard and desktop",
+      "detailed_description":
+          "CollabNext is a next-generation collaboration platform that streamlines collaboration, boosts "
+          "creativity, and enables instant presentations. Work together live, leverage AI to supercharge "
+          "your workflow, and move smoothly between whiteboard, documents, and slides — all in one app.\n\n"
+          "Built with Flutter for seamless cross-platform experience on mobile and desktop devices.\n\n"
+          "Key contributions:\n"
+          "• Developed cross-platform Flutter application for mobile, smartboard and desktop\n"
+          "• Implemented state management using Bloc pattern for scalable architecture\n"
+          "• Built real-time collaboration features for live teamwork\n"
+          "• Integrated AI-powered tools to enhance productivity and workflow\n"
+          "• Created unified experience for whiteboard, documents, and slides\n"
+          "• Ensured consistent UX across Android, iOS, Windows, macOS, and Linux",
+      "tech_stacks": [
+        "Flutter",
+        "Dart",
+        "Bloc",
+        "Clean Architecture",
+        "WebSocket",
+        "AI Integration"
+      ],
+      "logo_path": "assets/projects/collab.webp",
+      "images": <String>[
+        "assets/projects/collabnext_1.webp",
+        "assets/projects/collabnext_2.webp",
+        "assets/projects/collabnext_3.webp",
+        "assets/projects/collabnext_4.webp",
+        "assets/projects/collabnext_5.webp",
+        "assets/projects/collabnext_6.webp"
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "web_url": "https://collab.imago.buzz/home",
+      "card_color": "#E8F4F8",
     },
     {
       "title": "KipasKipas",
@@ -247,10 +289,11 @@ class PortfolioData {
       ],
       "play_store_url": "https://play.google.com/store/apps/details?id=com.koanba.kipaskipas",
       "github_url": "",
+      "web_url": "https://kipaskipas.com",
       "card_color": "#FEE8E8",
     },
     {
-      "title": "Binar Academy App",
+      "title": "Binar App",
       "description": "Educational platform for upskilling digital talent in Indonesia",
       "detailed_description":
           "Binar Academy is an educational technology platform providing bootcamps, network events, "
@@ -270,6 +313,7 @@ class PortfolioData {
       ],
       "play_store_url": "https://play.google.com/store/apps/details?id=com.binaracedemy.app",
       "github_url": "",
+      "web_url": "https://www.binar.co.id",
       "card_color": "#E8FEE8",
     },
     {
@@ -287,10 +331,11 @@ class PortfolioData {
       "tech_stacks": ["Kotlin", "MVVM", "Firebase", "Android Jetpack"],
       "logo_path": "assets/widya.png",
       "images": <String>[
-        "assets/projects/toba_1.png",
+        "assets/projects/toba_1.webp",
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#FFFEE8",
     },
     {
@@ -312,6 +357,7 @@ class PortfolioData {
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#F8EEFE",
     },
     {
@@ -333,10 +379,13 @@ class PortfolioData {
       ],
       "logo_path": "assets/artefact.png",
       "images": <String>[
-        "assets/projects/artefact_1.png",
+        "assets/projects/artefact_1.webp",
+        "assets/projects/artefact_2.webp",
+        "assets/projects/artefact_3.webp",
       ],
       "play_store_url": "",
       "github_url": "",
+      "web_url": "",
       "card_color": "#3D8B78",
     },
   ];

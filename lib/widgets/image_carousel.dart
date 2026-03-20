@@ -8,6 +8,7 @@ class ImageCarousel extends StatefulWidget {
   final bool showIndicators;
   final Color? placeholderColor;
   final BoxFit imageFit;
+  final bool enableZoom;
 
   const ImageCarousel({
     super.key,
@@ -18,6 +19,7 @@ class ImageCarousel extends StatefulWidget {
     this.showIndicators = true,
     this.placeholderColor,
     this.imageFit = BoxFit.cover,
+    this.enableZoom = false,
   });
 
   @override
@@ -26,6 +28,7 @@ class ImageCarousel extends StatefulWidget {
 
 class _ImageCarouselState extends State<ImageCarousel> {
   late PageController _pageController;
+  late TransformationController _transformationController;
   int _currentIndex = 0;
   bool _isHoveringLeft = false;
   bool _isHoveringRight = false;
@@ -34,12 +37,19 @@ class _ImageCarouselState extends State<ImageCarousel> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    _transformationController = TransformationController();
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _transformationController.dispose();
     super.dispose();
+  }
+
+  /// Reset zoom when changing pages
+  void _resetZoom() {
+    _transformationController.value = Matrix4.identity();
   }
 
   void _goToPage(int index) {
@@ -79,6 +89,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
               PageView.builder(
                 controller: _pageController,
                 onPageChanged: (index) {
+                  _resetZoom();
                   setState(() => _currentIndex = index);
                 },
                 itemCount: widget.images.length,
@@ -103,27 +114,32 @@ class _ImageCarouselState extends State<ImageCarousel> {
                     child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 200),
                       opacity: _currentIndex > 0 ? 1.0 : 0.3,
-                      child: GestureDetector(
-                        onTap: _previousPage,
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: _isHoveringLeft
-                                ? theme.colorScheme.surface.withValues(alpha: 0.95)
-                                : theme.colorScheme.surface.withValues(alpha: 0.8),
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: theme.colorScheme.shadow.withValues(alpha: 0.2),
-                                blurRadius: 8,
-                              ),
-                            ],
-                          ),
-                          child: Icon(
-                            Icons.chevron_left_rounded,
-                            size: 24,
-                            color: theme.colorScheme.onSurface,
+                      child: Semantics(
+                        button: true,
+                        enabled: _currentIndex > 0,
+                        label: 'Previous image',
+                        child: GestureDetector(
+                          onTap: _previousPage,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: _isHoveringLeft
+                                  ? theme.colorScheme.surface.withValues(alpha: 0.95)
+                                  : theme.colorScheme.surface.withValues(alpha: 0.8),
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: theme.colorScheme.shadow.withValues(alpha: 0.2),
+                                  blurRadius: 8,
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              Icons.chevron_left_rounded,
+                              size: 24,
+                              color: theme.colorScheme.onSurface,
+                            ),
                           ),
                         ),
                       ),
@@ -144,27 +160,32 @@ class _ImageCarouselState extends State<ImageCarousel> {
                     child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 200),
                       opacity: _currentIndex < widget.images.length - 1 ? 1.0 : 0.3,
-                      child: GestureDetector(
-                        onTap: _nextPage,
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: _isHoveringRight
-                                ? theme.colorScheme.surface.withValues(alpha: 0.95)
-                                : theme.colorScheme.surface.withValues(alpha: 0.8),
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: theme.colorScheme.shadow.withValues(alpha: 0.2),
-                                blurRadius: 8,
-                              ),
-                            ],
-                          ),
-                          child: Icon(
-                            Icons.chevron_right_rounded,
-                            size: 24,
-                            color: theme.colorScheme.onSurface,
+                      child: Semantics(
+                        button: true,
+                        enabled: _currentIndex < widget.images.length - 1,
+                        label: 'Next image',
+                        child: GestureDetector(
+                          onTap: _nextPage,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: _isHoveringRight
+                                  ? theme.colorScheme.surface.withValues(alpha: 0.95)
+                                  : theme.colorScheme.surface.withValues(alpha: 0.8),
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: theme.colorScheme.shadow.withValues(alpha: 0.2),
+                                  blurRadius: 8,
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              Icons.chevron_right_rounded,
+                              size: 24,
+                              color: theme.colorScheme.onSurface,
+                            ),
                           ),
                         ),
                       ),
@@ -184,24 +205,28 @@ class _ImageCarouselState extends State<ImageCarousel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
                     widget.images.length,
-                    (index) => GestureDetector(
-                      onTap: () => _goToPage(index),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        width: _currentIndex == index ? 24 : 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: _currentIndex == index
-                              ? theme.colorScheme.primary
-                              : theme.colorScheme.surface.withValues(alpha: 0.7),
-                          borderRadius: BorderRadius.circular(4),
-                          boxShadow: [
-                            BoxShadow(
-                              color: theme.colorScheme.shadow.withValues(alpha: 0.2),
-                              blurRadius: 4,
-                            ),
-                          ],
+                    (index) => Semantics(
+                      button: true,
+                      label: 'Go to image ${index + 1}',
+                      child: GestureDetector(
+                        onTap: () => _goToPage(index),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          width: _currentIndex == index ? 24 : 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: _currentIndex == index
+                                ? theme.colorScheme.primary
+                                : theme.colorScheme.surface.withValues(alpha: 0.7),
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                color: theme.colorScheme.shadow.withValues(alpha: 0.2),
+                                blurRadius: 4,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -212,7 +237,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
             // Image Counter Badge
             if (hasMultipleImages)
               Positioned(
-                top: 12,
+                bottom: 12,
                 right: 12,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -243,19 +268,30 @@ class _ImageCarouselState extends State<ImageCarousel> {
   }
 
   Widget _buildImage(String imagePath, ThemeData theme) {
+    final image = Image.asset(
+      imagePath,
+      fit: widget.imageFit,
+      width: double.infinity,
+      height: double.infinity,
+      // Limit decoded image size for better memory performance
+      cacheWidth: 800,
+      errorBuilder: (context, error, stackTrace) {
+        return _buildPlaceholder(theme);
+      },
+    );
+
     return Container(
       width: double.infinity,
       height: double.infinity,
       color: widget.placeholderColor ?? theme.colorScheme.surfaceContainerHighest,
-      child: Image.asset(
-        imagePath,
-        fit: widget.imageFit,
-        width: double.infinity,
-        height: double.infinity,
-        errorBuilder: (context, error, stackTrace) {
-          return _buildPlaceholder(theme);
-        },
-      ),
+      child: widget.enableZoom
+          ? InteractiveViewer(
+              transformationController: _transformationController,
+              minScale: 1.0,
+              maxScale: 4.0,
+              child: image,
+            )
+          : image,
     );
   }
 

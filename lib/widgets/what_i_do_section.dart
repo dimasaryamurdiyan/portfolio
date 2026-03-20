@@ -1,5 +1,6 @@
 // Section describing the user's expertise.
 import 'package:flutter/material.dart';
+import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 
 class WhatIDoSection extends StatelessWidget {
@@ -7,7 +8,7 @@ class WhatIDoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
     final theme = Theme.of(context);
 
     return Container(
@@ -26,7 +27,7 @@ class WhatIDoSection extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: isLargeScreen ? 100 : 60,
-          horizontal: isLargeScreen ? 120 : 40,
+          horizontal: isLargeScreen ? DesignConstants.paddingLargeHorizontal : DesignConstants.paddingSmallHorizontal,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,6 +131,8 @@ class WhatIDoSection extends StatelessWidget {
                                     child: Image.asset(
                                       'assets/my.jpeg',
                                       fit: BoxFit.cover,
+                                      cacheWidth: 480, // 2x the display size for retina
+                                      cacheHeight: 480,
                                       errorBuilder: (context, error, stackTrace) {
                                         return Container(
                                           decoration: BoxDecoration(
@@ -250,6 +253,8 @@ class WhatIDoSection extends StatelessWidget {
                                   child: Image.asset(
                                     'assets/my.jpeg',
                                     fit: BoxFit.cover,
+                                    cacheWidth: 320, // 2x the display size for retina
+                                    cacheHeight: 320,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Container(
                                         decoration: BoxDecoration(
