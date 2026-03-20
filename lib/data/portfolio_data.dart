@@ -164,24 +164,26 @@ class PortfolioData {
   static final List<Map<String, dynamic>> projects = [
     {
       "title": "CollabNext",
-      "description": "Cross-platform collaboration app for mobile and desktop devices",
+      "description": "Collaborate, Create, Present — All in One platform for mobile and desktop",
       "detailed_description":
-          "CollabNext is a next-generation collaboration application built with Flutter, designed to work "
-          "seamlessly across mobile and desktop platforms. The app enables real-time collaboration with "
-          "a modern, responsive interface optimized for various screen sizes and input methods.\n\n"
+          "CollabNext is a next-generation collaboration platform that streamlines collaboration, boosts "
+          "creativity, and enables instant presentations. Work together live, leverage AI to supercharge "
+          "your workflow, and move smoothly between whiteboard, documents, and slides — all in one app.\n\n"
+          "Built with Flutter for seamless cross-platform experience on mobile and desktop devices.\n\n"
           "Key contributions:\n"
           "• Developed cross-platform Flutter application for mobile and desktop\n"
           "• Implemented state management using Bloc pattern for scalable architecture\n"
-          "• Built responsive UI that adapts to different screen sizes and platforms\n"
-          "• Focused on real-time collaboration features and performance optimization\n"
-          "• Ensured consistent user experience across Android, iOS, Windows, macOS, and Linux",
+          "• Built real-time collaboration features for live teamwork\n"
+          "• Integrated AI-powered tools to enhance productivity and workflow\n"
+          "• Created unified experience for whiteboard, documents, and slides\n"
+          "• Ensured consistent UX across Android, iOS, Windows, macOS, and Linux",
       "tech_stacks": [
         "Flutter",
         "Dart",
         "Bloc",
         "Clean Architecture",
         "WebSocket",
-        "Cross-platform"
+        "AI Integration"
       ],
       "logo_path": "assets/projects/collabnext.webp",
       "images": <String>[
