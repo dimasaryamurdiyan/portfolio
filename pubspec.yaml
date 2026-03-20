@@ -25,6 +25,8 @@ dev_dependencies:
 flutter:
   assets:
     - assets/
+    - assets/icon/
+    - assets/projects/
   fonts:
       - family: Inter
         fonts:
