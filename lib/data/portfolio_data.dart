@@ -160,4 +160,183 @@ class PortfolioData {
     "Dicoding Indonesia: Belajar Pemrograman Dart",
     "Dicoding Indonesia: Membuat Aplikasi Flutter untuk Pemula",
   ];
+
+  static final List<Map<String, dynamic>> projects = [
+      {
+      "title": "Collab",
+      "description": "Drawing collaboration app for Interactive Flat Panel (smartboard) devices",
+      "detailed_description":
+          "Collab is a real-time drawing collaboration application built for Interactive Flat Panel "
+          "(Smartboard) devices. The app enables multi-user collaboration with responsive drawing tools "
+          "and a smooth interactive experience tailored for education and meeting-room environments.\n\n"
+          "Key contributions:\n"
+          "• Built Android-based collaboration experience for smartboard devices\n"
+          "• Implemented responsive drawing interactions for large-screen usage\n"
+          "• Worked with real-time communication using WebSocket\n"
+          "• Applied MVVM architecture for scalable feature development\n"
+          "• Focused on rendering performance and collaboration reliability",
+      "tech_stacks": [
+        "Kotlin",
+        "Java",
+        "Android Jetpack",
+        "MVVM",
+        "Koin",
+        "Coroutines",
+        "WebSocket",
+        "Room"
+      ],
+      "logo_path": "assets/imago.png",
+      "images": <String>[
+        "assets/projects/collab_1.png",
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "card_color": "#F4F0EC",
+    },
+    {
+      "title": "Launcher",
+      "description": "MDM app and custom launcher for Interactive Flat Panel (smartboard) devices",
+      "detailed_description":
+          "Launcher is a custom Android launcher and device-management interface designed for "
+          "Interactive Flat Panel (Smartboard) devices. It provides a large-screen optimized home "
+          "experience with utilities such as widgets, app access, productivity shortcuts, and device-level "
+          "management support.\n\n"
+          "Key contributions:\n"
+          "• Built custom launcher experience for enterprise and education smartboard devices\n"
+          "• Developed MDM-related functionality for device control and usability\n"
+          "• Used Jetpack Compose for modern UI implementation\n"
+          "• Integrated Room, Firebase, and WebSocket for data, sync, and connectivity needs\n"
+          "• Designed around large-screen responsiveness and device-owner scenarios",
+      "tech_stacks": [
+        "Kotlin",
+        "Java",
+        "Jetpack Compose",
+        "Android Jetpack",
+        "MVVM",
+        "Koin",
+        "Coroutines",
+        "Firebase",
+        "Room"
+      ],
+      "logo_path": "assets/imago.png",
+      "images": <String>[
+        "assets/projects/launcher_1.png",
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "card_color": "#EEE7E1",
+    },
+    {
+      "title": "KipasKipas",
+      "description": "Social-commerce and crowdfunding application from Indonesia",
+      "detailed_description":
+          "KipasKipas is Indonesia's first social-commerce and crowdfunding platform that combines "
+          "social media features with e-commerce capabilities. The app enables users to create content, "
+          "engage with communities, and participate in crowdfunding campaigns while shopping.\n\n"
+          "Key contributions:\n"
+          "• Integrated Huawei Push Service for broader device support\n"
+          "• Developed live streaming feature for real-time engagement\n"
+          "• Implemented feature flags for controlled rollouts\n"
+          "• Achieved 20% reduction in app size\n"
+          "• Set up CI/CD pipelines reducing deployment time by 30%",
+      "tech_stacks": ["Kotlin", "MVVM", "Koin", "Coroutines", "CI/CD", "Fastlane", "Modularization", "Dependency Injection"],
+      "logo_path": "assets/kipaskipas.png",
+      "images": <String>[
+        "assets/projects/kipaskipas_1.png",
+        "assets/projects/kipaskipas_2.png",
+      ],
+      "play_store_url": "https://play.google.com/store/apps/details?id=com.koanba.kipaskipas",
+      "github_url": "",
+      "card_color": "#FEE8E8",
+    },
+    {
+      "title": "Binar Academy App",
+      "description": "Educational platform for upskilling digital talent in Indonesia",
+      "detailed_description":
+          "Binar Academy is an educational technology platform providing bootcamps, network events, "
+          "and digital courses to upskill digital talent across Indonesia.\n\n"
+          "Key contributions:\n"
+          "• Developed, improved, and maintained native Android applications\n"
+          "• Handled bug fixing and performance monitoring\n"
+          "• Performed peer reviews and wrote comprehensive unit tests\n"
+          "• Improved code coverage by 40%\n"
+          "• Achieved 98% crash-free user rate\n"
+          "• Collaborated within cross-functional agile teams",
+      "tech_stacks": ["Kotlin", "MVVM", "RxJava", "Hilt", "Firebase", "Mockito", "EventBus", "Android Jetpack"],
+      "logo_path": "assets/binar.webp",
+      "images": <String>[
+        "assets/projects/binar_1.png",
+        "assets/projects/binar_2.png",
+      ],
+      "play_store_url": "https://play.google.com/store/apps/details?id=com.binaracedemy.app",
+      "github_url": "",
+      "card_color": "#E8FEE8",
+    },
+    {
+      "title": "Toba App",
+      "description": "Big data analytics app for social media competitor analysis",
+      "detailed_description":
+          "Toba is a mobile application developed for Widya Analytic, a big data analytics startup "
+          "focusing on social media analysis to help businesses compare themselves with competitors "
+          "using Instagram and Twitter data.\n\n"
+          "Key contributions:\n"
+          "• Independently conceptualized and implemented the Toba apps\n"
+          "• Developed Android app for tongue detection using Flutter\n"
+          "• Demonstrated strong sense of code ownership\n"
+          "• Worked without supervision on innovative features",
+      "tech_stacks": ["Kotlin", "MVVM", "Firebase", "Android Jetpack"],
+      "logo_path": "assets/widya.png",
+      "images": <String>[
+        "assets/projects/toba_1.png",
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "card_color": "#FFFEE8",
+    },
+    {
+      "title": "Kios Rakyat - Retail",
+      "description": "Platform for kiosk owners to manage products and orders",
+      "detailed_description":
+          "Kios Rakyat is an innovative platform enabling kiosk owners to efficiently manage "
+          "their products and facilitate user orders. The app streamlines the retail experience "
+          "for small business owners.\n\n"
+          "Key contributions:\n"
+          "• Single-handedly conceived, designed, and developed Kios Rakyat-Retail v1.0\n"
+          "• Integrated real-time chat feature using Firebase technology\n"
+          "• Enhanced user engagement and satisfaction through seamless communication",
+      "tech_stacks": ["Java", "Firebase", "MVVM", "Real-time Chat"],
+      "logo_path": "assets/kiosrakyat.png",
+      "images": <String>[
+        "assets/projects/kiosrakyat_1.png",
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "card_color": "#F8EEFE",
+    },
+    {
+      "title": "Artefact",
+      "description": "Covid screening app with tongue detection for initial health checking",
+      "detailed_description":
+          "Artefact is a healthcare-oriented mobile application designed for initial COVID checking, "
+          "including a tongue detection feature as part of its screening flow.\n\n"
+          "Key contributions:\n"
+          "• Developed Android application features for health-related screening flow\n"
+          "• Worked on Flutter-based and Android-based implementation areas\n"
+          "• Integrated Firebase for backend support and application services\n"
+          "• Built app architecture using MVVM and Android Jetpack\n"
+          "• Contributed to an innovative early-stage health-tech product",
+      "tech_stacks": [
+        "Flutter",
+        "GetX",
+        "Firebase",
+      ],
+      "logo_path": "assets/artefact.png",
+      "images": <String>[
+        "assets/projects/artefact_1.png",
+      ],
+      "play_store_url": "",
+      "github_url": "",
+      "card_color": "#3D8B78",
+    },
+  ];
 }
