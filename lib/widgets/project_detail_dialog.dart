@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/utils/color_utils.dart';
 import 'package:portfolio/utils/url_launcher_service.dart';
@@ -116,14 +117,9 @@ class ProjectDetailDialog extends StatelessWidget {
                         child: (project["logo_path"] as String?)?.isNotEmpty == true
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
-                                child: Image.asset(
+                                child: _buildLogoAsset(
                                   project["logo_path"] as String,
-                                  fit: BoxFit.contain,
-                                  cacheWidth: 128, // 2x the display size for retina
-                                  cacheHeight: 128,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return _buildFallbackLogo(theme);
-                                  },
+                                  theme,
                                 ),
                               )
                             : _buildFallbackLogo(theme),
@@ -401,6 +397,26 @@ class ProjectDetailDialog extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildLogoAsset(String logoPath, ThemeData theme) {
+    if (logoPath.toLowerCase().endsWith('.svg')) {
+      return SvgPicture.asset(
+        logoPath,
+        fit: BoxFit.contain,
+        placeholderBuilder: (context) => _buildFallbackLogo(theme),
+      );
+    }
+
+    return Image.asset(
+      logoPath,
+      fit: BoxFit.contain,
+      cacheWidth: 128, // 2x the display size for retina
+      cacheHeight: 128,
+      errorBuilder: (context, error, stackTrace) {
+        return _buildFallbackLogo(theme);
+      },
     );
   }
 }
