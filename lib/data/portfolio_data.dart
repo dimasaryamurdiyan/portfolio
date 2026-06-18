@@ -269,6 +269,48 @@ class PortfolioData {
       "card_color": "#E8F4F8",
     },
     {
+      "title": "Pockeva",
+      "description": "Offline-first, high-performance Personal Finance Tracker for Android",
+      "detailed_description":
+          "Pockeva is an offline-first personal finance tracker for Android, designed to help users "
+          "record transactions, monitor spending, and manage financial data with fast local-first "
+          "performance.\n\n"
+          "Built with Kotlin and Jetpack Compose, the app applies MVI and Clean Architecture to keep "
+          "the codebase predictable, testable, and maintainable. Room powers local persistence, "
+          "Coroutine Flow handles reactive data streams, and Hilt manages dependency injection across "
+          "the app layers.\n\n"
+          "Key contributions:\n"
+          "• Built native Android application using Kotlin and Jetpack Compose\n"
+          "• Designed offline-first data flow with Room and Coroutine Flow\n"
+          "• Applied MVI and Clean Architecture for clear state management\n"
+          "• Integrated Hilt for dependency injection across app layers\n"
+          "• Set up GitHub Actions CI/CD with Firebase App Distribution and Play Store automation",
+      "tech_stacks": [
+        "Kotlin",
+        "Jetpack Compose",
+        "MVI",
+        "Clean Architecture",
+        "Hilt",
+        "Room",
+        "Coroutine Flow",
+        "GitHub Actions CI/CD",
+        "Firebase App Distribution",
+        "Play Store Automation"
+      ],
+      "logo_path": "assets/pockeva.svg",
+      "images": <String>[
+        "assets/projects/pockeva_1.webp",
+        "assets/projects/pockeva_2.webp",
+        "assets/projects/pockeva_3.webp",
+        "assets/projects/pockeva_4.webp",
+        "assets/projects/pockeva_5.webp",
+      ],
+      "play_store_url": "https://play.google.com/store/apps/details?id=com.singaludra.pockeva&pcampaignid=web_share",
+      "github_url": "",
+      "web_url": "",
+      "card_color": "#EAF4EF",
+    },
+    {
       "title": "KipasKipas",
       "description": "Social-commerce and crowdfunding application from Indonesia",
       "detailed_description":
