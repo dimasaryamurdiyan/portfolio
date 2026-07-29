@@ -34,5 +34,5 @@ jobs:
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       uses: bluefireteam/flutter-gh-pages@v9
       with:
-        baseHref: '/'
+        baseHref: '/portfolio/'
         targetBranch: 'gh-pages'
