@@ -9,10 +9,7 @@ import 'package:portfolio/utils/url_launcher_service.dart';
 class HeroSection extends StatefulWidget {
   final VoidCallback onDownloadResumePressed;
 
-  const HeroSection({
-    super.key,
-    required this.onDownloadResumePressed,
-  });
+  const HeroSection({super.key, required this.onDownloadResumePressed});
 
   @override
   State<HeroSection> createState() => _HeroSectionState();
@@ -33,14 +30,10 @@ class _HeroSectionState extends State<HeroSection>
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    _pulseAnimation = Tween<double>(
-      begin: 1.0,
-      end: 1.2,
-    ).animate(CurvedAnimation(
-      parent: _pulseController,
-      curve: Curves.easeInOut,
-    ));
-    
+    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
+
     // Dot animation controller
     _dotController = AnimationController(
       duration: const Duration(seconds: 1),
@@ -49,11 +42,8 @@ class _HeroSectionState extends State<HeroSection>
     _dotAnimation = Tween<double>(
       begin: -15.0,
       end: 15.0,
-    ).animate(CurvedAnimation(
-      parent: _dotController,
-      curve: Curves.easeInOut,
-    ));
-    
+    ).animate(CurvedAnimation(parent: _dotController, curve: Curves.easeInOut));
+
     _pulseController.repeat(reverse: true);
     _dotController.repeat(reverse: true);
   }
@@ -76,12 +66,19 @@ class _HeroSectionState extends State<HeroSection>
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
+    final isLargeScreen =
+        MediaQuery.of(context).size.width > DesignConstants.tabletBreakpoint;
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isLargeScreen ? DesignConstants.paddingLargeVertical : DesignConstants.paddingSmallVertical,
-        horizontal: isLargeScreen ? DesignConstants.paddingLargeHorizontal : DesignConstants.paddingSmallHorizontal,
+        vertical:
+            isLargeScreen
+                ? DesignConstants.paddingLargeVertical
+                : DesignConstants.paddingSmallVertical,
+        horizontal:
+            isLargeScreen
+                ? DesignConstants.paddingLargeHorizontal
+                : DesignConstants.paddingSmallHorizontal,
       ),
       alignment: Alignment.center,
       child: Row(
@@ -100,9 +97,7 @@ class _HeroSectionState extends State<HeroSection>
                   style: TextStyle(
                     fontSize: isLargeScreen ? 64 : 48,
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontVariations: [
-                        FontVariation('wght', 600),
-                    ]
+                    fontVariations: [FontVariation('wght', 600)],
                   ),
                 ),
                 Text(
@@ -128,87 +123,55 @@ class _HeroSectionState extends State<HeroSection>
                     ),
                   ),
                 ),
-                const SizedBox(height: 64),
-                // Social Media Icons with circular grey stroke
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                const SizedBox(height: 48),
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                          width: 1.5,
-                        ),
-                      ),
-                      child: IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/github-outline.svg',
-                          width: 24,
-                          height: 24,
-                          colorFilter: ColorFilter.mode(
-                            Theme.of(context).colorScheme.onSurface,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        onPressed: () {
-                          _analytics.trackSocialMediaClick('github');
-                          UrlLauncherService.launch(PortfolioData.githubUrl);
-                        },
-                        tooltip: 'GitHub',
-                      ),
+                    ElevatedButton.icon(
+                      onPressed: widget.onDownloadResumePressed,
+                      icon: const Icon(Icons.download_rounded, size: 18),
+                      label: const Text("Resume"),
                     ),
-                    const SizedBox(width: 16),
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                          width: 1.5,
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        _analytics.trackSocialMediaClick('linkedin');
+                        UrlLauncherService.launch(PortfolioData.linkedinUrl);
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/linkedin.svg',
+                        width: 18,
+                        height: 18,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
+                          BlendMode.srcIn,
                         ),
                       ),
-                      child: IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/linkedin.svg',
-                          width: 24,
-                          height: 24,
-                          colorFilter: ColorFilter.mode(
-                            Theme.of(context).colorScheme.onSurface,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        onPressed: () {
-                          _analytics.trackSocialMediaClick('linkedin');
-                          UrlLauncherService.launch(PortfolioData.linkedinUrl);
-                        },
-                        tooltip: 'LinkedIn',
-                      ),
+                      label: const Text("LinkedIn"),
                     ),
-                    const SizedBox(width: 16),
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                          width: 1.5,
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        _analytics.trackSocialMediaClick('github');
+                        UrlLauncherService.launch(PortfolioData.githubUrl);
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/github-outline.svg',
+                        width: 18,
+                        height: 18,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
+                          BlendMode.srcIn,
                         ),
                       ),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.download,
-                          size: 24,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                        onPressed: widget.onDownloadResumePressed,
-                        tooltip: 'Download Resume',
-                      ),
+                      label: const Text("GitHub"),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-          
+
           // Right side - Scroll down animation (only on large screens)
           if (isLargeScreen) ...[
             const SizedBox(width: 40),
@@ -228,38 +191,44 @@ class _HeroSectionState extends State<HeroSection>
                           child: GestureDetector(
                             onTap: _scrollDown,
                             child: Container(
-                            width: 40,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
-                                width: 2,
+                              width: 40,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant
+                                      .withValues(alpha: 0.5),
+                                  width: 2,
+                                ),
+                              ),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  AnimatedBuilder(
+                                    animation: _dotAnimation,
+                                    builder: (context, child) {
+                                      return Transform.translate(
+                                        offset: Offset(0, _dotAnimation.value),
+                                        child: Container(
+                                          width: 12,
+                                          height: 12,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color:
+                                                Theme.of(
+                                                  context,
+                                                ).colorScheme.onSurface,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                AnimatedBuilder(
-                                  animation: _dotAnimation,
-                                  builder: (context, child) {
-                                    return Transform.translate(
-                                      offset: Offset(0, _dotAnimation.value),
-                                      child: Container(
-                                        width: 12,
-                                        height: 12,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context).colorScheme.onSurface,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
                           ),
-                        ),
                         );
                       },
                     ),
@@ -270,7 +239,9 @@ class _HeroSectionState extends State<HeroSection>
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
                       letterSpacing: 1.2,
                     ),
                   ),
