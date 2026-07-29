@@ -7,10 +7,7 @@ import 'package:portfolio/widgets/image_carousel.dart';
 class ProjectDetailDialog extends StatelessWidget {
   final Map<String, dynamic> project;
 
-  const ProjectDetailDialog({
-    super.key,
-    required this.project,
-  });
+  const ProjectDetailDialog({super.key, required this.project});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +20,7 @@ class ProjectDetailDialog extends StatelessWidget {
     final playStoreUrl = project["play_store_url"] as String? ?? "";
     final githubUrl = project["github_url"] as String? ?? "";
     final webUrl = project["web_url"] as String? ?? "";
+    final caseStudy = project["case_study"] as Map<String, String>?;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -57,14 +55,17 @@ class ProjectDetailDialog extends StatelessWidget {
                   ImageCarousel(
                     images: images,
                     height: isLargeScreen ? 350 : 260,
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(24),
+                    ),
                     showArrows: true,
                     showIndicators: true,
                     imageFit: BoxFit.contain,
                     enableZoom: true,
-                    placeholderColor: theme.brightness == Brightness.dark
-                        ? theme.colorScheme.surfaceContainerHighest
-                        : cardColor.withValues(alpha: 0.5),
+                    placeholderColor:
+                        theme.brightness == Brightness.dark
+                            ? theme.colorScheme.surfaceContainerHighest
+                            : cardColor.withValues(alpha: 0.5),
                   ),
 
                   // Close Button
@@ -99,10 +100,7 @@ class ProjectDetailDialog extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 3,
-                        ),
+                        border: Border.all(color: Colors.white, width: 3),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withValues(alpha: 0.2),
@@ -113,20 +111,23 @@ class ProjectDetailDialog extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: (project["logo_path"] as String?)?.isNotEmpty == true
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.asset(
-                                  project["logo_path"] as String,
-                                  fit: BoxFit.contain,
-                                  cacheWidth: 128, // 2x the display size for retina
-                                  cacheHeight: 128,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return _buildFallbackLogo(theme);
-                                  },
-                                ),
-                              )
-                            : _buildFallbackLogo(theme),
+                        child:
+                            (project["logo_path"] as String?)?.isNotEmpty ==
+                                    true
+                                ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: Image.asset(
+                                    project["logo_path"] as String,
+                                    fit: BoxFit.contain,
+                                    cacheWidth:
+                                        128, // 2x the display size for retina
+                                    cacheHeight: 128,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return _buildFallbackLogo(theme);
+                                    },
+                                  ),
+                                )
+                                : _buildFallbackLogo(theme),
                       ),
                     ),
                   ),
@@ -172,63 +173,84 @@ class ProjectDetailDialog extends StatelessWidget {
                       Wrap(
                         spacing: 10,
                         runSpacing: 10,
-                        children: techStacks.map((tech) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 14,
-                              vertical: 8,
-                            ),
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primaryContainer.withValues(alpha: 0.4),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                              ),
-                            ),
-                            child: Text(
-                              tech as String,
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: theme.colorScheme.primary,
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                        children:
+                            techStacks.map((tech) {
+                              return Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 14,
+                                  vertical: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primaryContainer
+                                      .withValues(alpha: 0.4),
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: theme.colorScheme.primary.withValues(
+                                      alpha: 0.3,
+                                    ),
+                                  ),
+                                ),
+                                child: Text(
+                                  tech as String,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: theme.colorScheme.primary,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
                       ),
 
                       const SizedBox(height: 28),
 
-                      // Detailed Description
-                      _buildSectionTitle(theme, "About the Project", isLargeScreen),
-                      const SizedBox(height: 12),
-                      Text(
-                        project["detailed_description"] as String? ?? "",
-                        style: TextStyle(
-                          fontSize: isLargeScreen ? 15 : 14,
-                          fontWeight: FontWeight.w400,
-                          color: theme.colorScheme.onSurfaceVariant,
-                          height: 1.7,
+                      if (caseStudy != null) ...[
+                        _buildSectionTitle(theme, "Case Study", isLargeScreen),
+                        const SizedBox(height: 12),
+                        _buildCaseStudyGrid(theme, caseStudy, isLargeScreen),
+                      ] else ...[
+                        _buildSectionTitle(
+                          theme,
+                          "About the Project",
+                          isLargeScreen,
                         ),
-                      ),
+                        const SizedBox(height: 12),
+                        Text(
+                          project["detailed_description"] as String? ?? "",
+                          style: TextStyle(
+                            fontSize: isLargeScreen ? 15 : 14,
+                            fontWeight: FontWeight.w400,
+                            color: theme.colorScheme.onSurfaceVariant,
+                            height: 1.7,
+                          ),
+                        ),
+                      ],
 
                       // Links Section
-                      if (playStoreUrl.isNotEmpty || githubUrl.isNotEmpty || webUrl.isNotEmpty) ...[
+                      if (playStoreUrl.isNotEmpty ||
+                          githubUrl.isNotEmpty ||
+                          webUrl.isNotEmpty) ...[
                         const SizedBox(height: 32),
                         Container(
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
-                                theme.colorScheme.secondaryContainer.withValues(alpha: 0.2),
+                                theme.colorScheme.primaryContainer.withValues(
+                                  alpha: 0.3,
+                                ),
+                                theme.colorScheme.secondaryContainer.withValues(
+                                  alpha: 0.2,
+                                ),
                               ],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
-                              color: theme.colorScheme.outline.withValues(alpha: 0.1),
+                              color: theme.colorScheme.outline.withValues(
+                                alpha: 0.1,
+                              ),
                             ),
                           ),
                           child: Column(
@@ -270,14 +292,20 @@ class ProjectDetailDialog extends StatelessWidget {
                                       context,
                                       icon: Icons.shop_rounded,
                                       label: "Play Store",
-                                      onTap: () => UrlLauncherService.launch(playStoreUrl),
+                                      onTap:
+                                          () => UrlLauncherService.launch(
+                                            playStoreUrl,
+                                          ),
                                     ),
                                   if (githubUrl.isNotEmpty)
                                     _buildLinkButton(
                                       context,
                                       icon: Icons.code_rounded,
                                       label: "GitHub",
-                                      onTap: () => UrlLauncherService.launch(githubUrl),
+                                      onTap:
+                                          () => UrlLauncherService.launch(
+                                            githubUrl,
+                                          ),
                                       isPrimary: false,
                                     ),
                                   if (webUrl.isNotEmpty)
@@ -285,7 +313,9 @@ class ProjectDetailDialog extends StatelessWidget {
                                       context,
                                       icon: Icons.language_rounded,
                                       label: "Website",
-                                      onTap: () => UrlLauncherService.launch(webUrl),
+                                      onTap:
+                                          () =>
+                                              UrlLauncherService.launch(webUrl),
                                       isPrimary: false,
                                     ),
                                 ],
@@ -348,23 +378,25 @@ class ProjectDetailDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          decoration: isPrimary
-              ? null
-              : BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: theme.colorScheme.outline.withValues(alpha: 0.3),
+          decoration:
+              isPrimary
+                  ? null
+                  : BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: theme.colorScheme.outline.withValues(alpha: 0.3),
+                    ),
                   ),
-                ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 icon,
                 size: 20,
-                color: isPrimary
-                    ? theme.colorScheme.onPrimary
-                    : theme.colorScheme.onSurface,
+                color:
+                    isPrimary
+                        ? theme.colorScheme.onPrimary
+                        : theme.colorScheme.onSurface,
               ),
               const SizedBox(width: 10),
               Text(
@@ -372,15 +404,73 @@ class ProjectDetailDialog extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: isPrimary
-                      ? theme.colorScheme.onPrimary
-                      : theme.colorScheme.onSurface,
+                  color:
+                      isPrimary
+                          ? theme.colorScheme.onPrimary
+                          : theme.colorScheme.onSurface,
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildCaseStudyGrid(
+    ThemeData theme,
+    Map<String, String> caseStudy,
+    bool isLargeScreen,
+  ) {
+    final entries =
+        [
+          MapEntry("Context", caseStudy["context"] ?? ""),
+          MapEntry("My Role", caseStudy["role"] ?? ""),
+          MapEntry("Technical Challenge", caseStudy["challenge"] ?? ""),
+          MapEntry("Result", caseStudy["result"] ?? ""),
+        ].where((entry) => entry.value.isNotEmpty).toList();
+
+    return Column(
+      children:
+          entries.map((entry) {
+            return Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: EdgeInsets.all(isLargeScreen ? 18 : 16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.35,
+                ),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: theme.colorScheme.outline.withValues(alpha: 0.12),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    entry.key,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    entry.value,
+                    style: TextStyle(
+                      fontSize: isLargeScreen ? 15 : 14,
+                      fontWeight: FontWeight.w400,
+                      color: theme.colorScheme.onSurfaceVariant,
+                      height: 1.55,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
     );
   }
 
