@@ -5,11 +5,10 @@ import 'package:portfolio/constants/design_constants.dart';
 import 'package:portfolio/data/portfolio_data.dart';
 import 'package:portfolio/services/analytics_service.dart';
 import 'package:portfolio/utils/url_launcher_service.dart';
+import 'package:portfolio/widgets/resume_download_button.dart';
 
 class HeroSection extends StatefulWidget {
-  final VoidCallback onDownloadResumePressed;
-
-  const HeroSection({super.key, required this.onDownloadResumePressed});
+  const HeroSection({super.key});
 
   @override
   State<HeroSection> createState() => _HeroSectionState();
@@ -129,11 +128,7 @@ class _HeroSectionState extends State<HeroSection>
                   runSpacing: 12,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    ElevatedButton.icon(
-                      onPressed: widget.onDownloadResumePressed,
-                      icon: const Icon(Icons.download_rounded, size: 18),
-                      label: const Text("Resume"),
-                    ),
+                    const ResumeDownloadButton(),
                     OutlinedButton.icon(
                       onPressed: () {
                         _analytics.trackSocialMediaClick('linkedin');

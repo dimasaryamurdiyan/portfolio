@@ -120,6 +120,14 @@ The application uses static data defined in `lib/data/portfolio_data.dart`. To c
 4. Update education information
 5. Add certificates and achievements
 
+### Resume download
+
+The resume download URL is managed through Firebase Remote Config in the
+`portfolio-e3a14` project. Create and publish a string parameter named
+`resume_download_url` whose value is a public HTTPS URL that downloads the
+current PDF. The app refreshes this value at most once per hour and uses the
+last activated value when a refresh is temporarily unavailable.
+
 ## 📄 License
 
 This project is a personal portfolio application. All rights reserved.
