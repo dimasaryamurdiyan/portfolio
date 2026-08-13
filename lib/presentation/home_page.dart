@@ -28,9 +28,11 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _aboutKey = GlobalKey();
-  final GlobalKey _experienceKey = GlobalKey(); // Changed from _projectsKey to _experienceKey
-  final GlobalKey _contactKey = GlobalKey(); // Combined with "Let's Work Together"
-  
+  final GlobalKey _experienceKey =
+      GlobalKey(); // Changed from _projectsKey to _experienceKey
+  final GlobalKey _contactKey =
+      GlobalKey(); // Combined with "Let's Work Together"
+
   final AnalyticsService _analytics = AnalyticsService.instance;
   late DateTime _sessionStartTime;
   double _lastScrollPosition = 0;
@@ -56,7 +58,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     _sessionStartTime = DateTime.now();
     _setupScrollListener();
     _trackInitialPageView();
-    
+
     // Handle async setup properly
     _setupAnalytics().catchError((error) {
       if (kDebugMode) {
@@ -82,11 +84,11 @@ class _HomePageState extends ConsumerState<HomePage> {
   Future<void> _setupAnalytics() async {
     // Track session start and device info
     await _analytics.trackSessionStart();
-    
+
     // Track device/platform info
     String deviceType = 'unknown';
     String platform = 'unknown';
-    
+
     if (kIsWeb) {
       deviceType = 'web';
       platform = 'web';
@@ -94,16 +96,22 @@ class _HomePageState extends ConsumerState<HomePage> {
       platform = Platform.operatingSystem;
       deviceType = _getDeviceType();
     }
-    
+
     await _analytics.trackDeviceInfo(deviceType, platform);
     await _analytics.setUserProperty('device_type', deviceType);
     await _analytics.setUserProperty('platform', platform);
   }
 
   String _getDeviceType() {
-    if (kIsWeb) return 'web';
-    if (Platform.isAndroid || Platform.isIOS) return 'mobile';
-    if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) return 'desktop';
+    if (kIsWeb) {
+      return 'web';
+    }
+    if (Platform.isAndroid || Platform.isIOS) {
+      return 'mobile';
+    }
+    if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+      return 'desktop';
+    }
     return 'unknown';
   }
 
@@ -128,7 +136,9 @@ class _HomePageState extends ConsumerState<HomePage> {
     final maxScrollExtent = _scrollController.position.maxScrollExtent;
 
     // Avoid division by zero
-    if (maxScrollExtent <= 0) return;
+    if (maxScrollExtent <= 0) {
+      return;
+    }
 
     final scrollPercentage = (currentPosition / maxScrollExtent) * 100;
     final lastScrollPercentage = (_lastScrollPosition / maxScrollExtent) * 100;
@@ -160,7 +170,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     _scrollThrottleTimer?.cancel();
 
     // Track session end - use unawaited to explicitly indicate we don't wait for completion
-    final sessionDuration = DateTime.now().difference(_sessionStartTime).inSeconds;
+    final sessionDuration =
+        DateTime.now().difference(_sessionStartTime).inSeconds;
     unawaited(_analytics.trackSessionEnd(sessionDuration));
 
     _scrollController.dispose();
@@ -171,9 +182,10 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isLargeScreen = screenWidth > DesignConstants.tabletBreakpoint;
-    final sectionGap = isLargeScreen
-        ? DesignConstants.sectionGapLarge
-        : DesignConstants.sectionGapSmall;
+    final sectionGap =
+        isLargeScreen
+            ? DesignConstants.sectionGapLarge
+            : DesignConstants.sectionGapSmall;
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -198,17 +210,14 @@ class _HomePageState extends ConsumerState<HomePage> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  constraints: const BoxConstraints(maxWidth: DesignConstants.maxContentWidth),
+                  constraints: const BoxConstraints(
+                    maxWidth: DesignConstants.maxContentWidth,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // Hero Section
-                      HeroSection(
-                        onDownloadResumePressed: () {
-                          _analytics.trackResumeDownload();
-                          UrlLauncherService.launch('https://drive.google.com/uc?export=download&id=1E4G1QIgBaqOAqkDKEMjE1DNSw8WJpEwH');
-                        },
-                      ),
+                      const HeroSection(),
                       SizedBox(height: sectionGap),
 
                       // What I do Section
