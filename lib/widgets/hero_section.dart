@@ -122,78 +122,44 @@ class _HeroSectionState extends State<HeroSection>
                     ),
                   ),
                 ),
-                const SizedBox(height: 64),
-                // Social Media Icons with circular grey stroke
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                const SizedBox(height: 48),
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                          width: 1.5,
+                    const ResumeDownloadButton(),
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        _analytics.trackSocialMediaClick('linkedin');
+                        UrlLauncherService.launch(PortfolioData.linkedinUrl);
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/linkedin.svg',
+                        width: 18,
+                        height: 18,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
+                          BlendMode.srcIn,
                         ),
                       ),
-                      child: IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/github-outline.svg',
-                          width: 24,
-                          height: 24,
-                          colorFilter: ColorFilter.mode(
-                            Theme.of(context).colorScheme.onSurface,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        onPressed: () {
-                          _analytics.trackSocialMediaClick('github');
-                          UrlLauncherService.launch(PortfolioData.githubUrl);
-                        },
-                        tooltip: 'GitHub',
-                      ),
+                      label: const Text("LinkedIn"),
                     ),
-                    const SizedBox(width: 16),
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                          width: 1.5,
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        _analytics.trackSocialMediaClick('github');
+                        UrlLauncherService.launch(PortfolioData.githubUrl);
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/github-outline.svg',
+                        width: 18,
+                        height: 18,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.primary,
+                          BlendMode.srcIn,
                         ),
                       ),
-                      child: IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/linkedin.svg',
-                          width: 24,
-                          height: 24,
-                          colorFilter: ColorFilter.mode(
-                            Theme.of(context).colorScheme.onSurface,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                        onPressed: () {
-                          _analytics.trackSocialMediaClick('linkedin');
-                          UrlLauncherService.launch(PortfolioData.linkedinUrl);
-                        },
-                        tooltip: 'LinkedIn',
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
-                          width: 1.5,
-                        ),
-                      ),
-                      child: const ResumeDownloadButton(),
+                      label: const Text("GitHub"),
                     ),
                   ],
                 ),

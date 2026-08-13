@@ -37,7 +37,9 @@ void main() {
       ),
     );
 
-    final button = tester.widget<IconButton>(find.byType(IconButton));
+    final button = tester.widget<ElevatedButton>(
+      find.byWidgetPredicate((widget) => widget is ElevatedButton),
+    );
     expect(button.onPressed, isNull);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
     expect(launchCalls, 0);
@@ -67,7 +69,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byTooltip('Download Resume'));
+    await tester.tap(find.text('Resume'));
     await tester.pump();
 
     expect(launchedUri, expectedUri);
@@ -87,7 +89,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byTooltip('Download Resume'));
+    await tester.tap(find.text('Resume'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
 
@@ -115,7 +117,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byTooltip('Download Resume'));
+    await tester.tap(find.text('Resume'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
     expect(loadAttempts, 1);

@@ -65,23 +65,16 @@ class _ResumeDownloadButtonState extends ConsumerState<ResumeDownloadButton> {
     final resumeUrl = ref.watch(resumeDownloadUrlProvider);
     final isLoading = resumeUrl.isLoading || _isDownloadInProgress;
 
-    return IconButton(
+    return ElevatedButton.icon(
+      onPressed: isLoading ? null : _downloadResume,
       icon:
           isLoading
-              ? SizedBox.square(
-                dimension: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
+              ? const SizedBox.square(
+                dimension: 18,
+                child: CircularProgressIndicator(strokeWidth: 2),
               )
-              : Icon(
-                Icons.download,
-                size: 24,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-      onPressed: isLoading ? null : _downloadResume,
-      tooltip: isLoading ? 'Loading Resume' : 'Download Resume',
+              : const Icon(Icons.download_rounded, size: 18),
+      label: Text(isLoading ? 'Loading...' : 'Resume'),
     );
   }
 }
